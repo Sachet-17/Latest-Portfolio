@@ -49,6 +49,7 @@ const WorksSection = () => {
         const rect = section.getBoundingClientRect();
         // Show tabs when any part of works section is visible
         const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 100;
+        console.log('Works section visibility:', isVisible, rect.top, rect.bottom);
         setShowFloatingTabs(isVisible);
       }
 
