@@ -12,6 +12,18 @@ const WorksSection = () => {
 
   const currentWorks = activeTab === 'projects' ? projects : experience;
 
+  // Scroll to first item when tab changes
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    // Scroll to top of works section
+    setTimeout(() => {
+      const worksSection = document.querySelector('#works');
+      if (worksSection) {
+        worksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   useEffect(() => {
     // Reset when tab changes
     setActiveIndex(0);
@@ -102,7 +114,7 @@ const WorksSection = () => {
         }`}>
           <div className="bg-[#1A1A1A]/90 backdrop-blur-md rounded-full p-1.5 border border-gray-800/50 shadow-2xl flex gap-1">
             <button
-              onClick={() => setActiveTab('projects')}
+              onClick={() => handleTabChange('projects')}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === 'projects' 
                   ? 'bg-[#C5B99A] text-[#0F0F0F]' 
@@ -113,7 +125,7 @@ const WorksSection = () => {
               Projects
             </button>
             <button
-              onClick={() => setActiveTab('experience')}
+              onClick={() => handleTabChange('experience')}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === 'experience' 
                   ? 'bg-[#C5B99A] text-[#0F0F0F]' 

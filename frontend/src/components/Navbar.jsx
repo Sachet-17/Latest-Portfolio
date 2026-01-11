@@ -167,12 +167,12 @@ const Navbar = () => {
                   Github
                 </a>
                 <a 
-                  href="https://leetcode.com/sachetbisi" 
+                  href="/files/resume.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-[#F5F1E8] transition-colors duration-300"
                 >
-                  Leetcode
+                  Resume
                 </a>
               </div>
             </div>

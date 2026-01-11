@@ -31,8 +31,8 @@ const Hero = () => {
   };
 
   const openResume = () => {
-    // Opens resume in new tab - update URL when you have the actual resume
-    window.open('/resume.pdf', '_blank');
+    // Opens resume from files folder in new tab
+    window.open('/files/resume.pdf', '_blank');
   };
 
   return (
