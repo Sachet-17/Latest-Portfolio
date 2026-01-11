@@ -102,7 +102,7 @@ export const personalInfo = {
   phone: "+1 (551) 998-3097",
   location: "New York, NY",
   linkedin: "https://linkedin.com/in/sachetbisi",
-  github: "https://github.com/sacherbisi"
+  github: "https://github.com/Sachet-17"
 };
 ```
 
@@ -271,4 +271,4 @@ Personal portfolio - feel free to use as inspiration for your own!
 **Sachet Ranjan Bisi**
 - Email: sb9229@nyu.edu
 - LinkedIn: [sachetbisi](https://linkedin.com/in/sachetbisi)
-- GitHub: [sacherbisi](https://github.com/sacherbisi)
+- GitHub: [Sachet-17](https://github.com/Sachet-17)

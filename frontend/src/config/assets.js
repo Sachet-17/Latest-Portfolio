@@ -36,7 +36,7 @@ export const files = {
 // Social links
 export const socialLinks = {
   linkedin: 'https://linkedin.com/in/sachetbisi',
-  github: 'https://github.com/sacherbisi',
+  github: 'https://github.com/Sachet-17',
   email: 'sb9229@nyu.edu',
 };
 

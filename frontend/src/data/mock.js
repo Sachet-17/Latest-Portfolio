@@ -8,7 +8,7 @@ export const personalInfo = {
   phone: "+1 773-709-0002",
   location: "New York City, NY",
   website: "iamsrb.com",
-  github: "https://github.com/sacherbisi",
+  github: "https://github.com/Sachet-17",
   linkedin: "https://linkedin.com/in/sachetbisi",
   bio: "I'm Sachet Ranjan Bisi, a Computer Engineering graduate from NYU with hands-on experience in software development and AI/ML deployment. I've built scalable APIs, optimized backend systems, and deployed intelligent applications across AWS, GCP, and Azure.\n\nMy work spans from boosting system throughput to building an LLM-powered system that improved accuracy and halved reconciliation time. I'm passionate about designing reliable, impactful systems that blend innovation with real-world impact.\n\nOutside of work, I'm a tech enthusiast and content consumer who loves following the NBA, diving into anime and immersive TV shows, and solving problems over a good cup of coffee.",
   skills: [
