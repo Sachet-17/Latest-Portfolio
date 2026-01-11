@@ -33,6 +33,18 @@ const WorksSection = () => {
       headerObserver.observe(headerRef.current);
     }
 
+    // Section observer for floating tabs
+    const sectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingTabs(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      sectionObserver.observe(sectionRef.current);
+    }
+
     // Scroll handler for active item
     const handleScroll = () => {
       itemRefs.current.forEach((ref, index) => {
@@ -50,6 +62,7 @@ const WorksSection = () => {
 
     return () => {
       headerObserver.disconnect();
+      sectionObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
   }, [activeTab]);
