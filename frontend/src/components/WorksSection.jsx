@@ -45,20 +45,16 @@ const WorksSection = () => {
       headerObserver.observe(headerRef.current);
     }
 
-    // Section observer for floating tabs
-    const sectionObserver = new IntersectionObserver(
-      ([entry]) => {
-        setShowFloatingTabs(entry.isIntersecting);
-      },
-      { threshold: 0, rootMargin: '0px' }
-    );
-
-    if (sectionRef.current) {
-      sectionObserver.observe(sectionRef.current);
-    }
-
-    // Scroll handler for active item
+    // Scroll handler for floating tabs and active item
     const handleScroll = () => {
+      // Show floating tabs when in works section
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        setShowFloatingTabs(isInView);
+      }
+
+      // Update active item
       itemRefs.current.forEach((ref, index) => {
         if (ref) {
           const rect = ref.getBoundingClientRect();
@@ -71,10 +67,11 @@ const WorksSection = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
 
     return () => {
       headerObserver.disconnect();
-      sectionObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
   }, [activeTab]);
