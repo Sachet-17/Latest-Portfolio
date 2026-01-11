@@ -73,43 +73,39 @@ const WorksSection = () => {
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`mb-8 transition-all duration-1000 ease-out ${
+          className={`mb-16 transition-all duration-1000 ease-out ${
             headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-8">
+          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase">
             Selected Works
           </h2>
         </div>
-          
-        {/* Sticky Tabs - Always visible */}
-        <div className={`sticky top-0 z-20 bg-[#0F0F0F] py-6 transition-all duration-500 ${
-          headerVisible ? 'opacity-100' : 'opacity-0'
-        }`}>
-          <div className="flex gap-12 border-b border-gray-800 pb-6">
+
+        {/* Floating Tabs - Always visible pill */}
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+          <div className="bg-[#1A1A1A]/90 backdrop-blur-md rounded-full p-1.5 border border-gray-800/50 shadow-2xl flex gap-1">
             <button
               onClick={() => setActiveTab('projects')}
-              className={`text-lg md:text-xl tracking-wide pb-2 transition-all duration-400 relative ${
-                activeTab === 'projects' ? 'text-[#F5F1E8]' : 'text-gray-600 hover:text-gray-400'
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === 'projects' 
+                  ? 'bg-[#C5B99A] text-[#0F0F0F]' 
+                  : 'text-gray-400 hover:text-[#F5F1E8]'
               }`}
               data-testid="projects-tab"
             >
-              (PROJECTS)
-              <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#C5B99A] transition-transform duration-400 origin-left ${
-                activeTab === 'projects' ? 'scale-x-100' : 'scale-x-0'
-              }`} />
+              Projects
             </button>
             <button
               onClick={() => setActiveTab('experience')}
-              className={`text-lg md:text-xl tracking-wide pb-2 transition-all duration-400 relative ${
-                activeTab === 'experience' ? 'text-[#F5F1E8]' : 'text-gray-600 hover:text-gray-400'
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === 'experience' 
+                  ? 'bg-[#C5B99A] text-[#0F0F0F]' 
+                  : 'text-gray-400 hover:text-[#F5F1E8]'
               }`}
               data-testid="experience-tab"
             >
-              (EXPERIENCE)
-              <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#C5B99A] transition-transform duration-400 origin-left ${
-                activeTab === 'experience' ? 'scale-x-100' : 'scale-x-0'
-              }`} />
+              Experience
             </button>
           </div>
         </div>
