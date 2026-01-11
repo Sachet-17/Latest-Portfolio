@@ -11,7 +11,7 @@ Build a professional portfolio website for an AI/ML Engineer and Software Develo
 ## Sections
 1. **Hero:** Opening animation with "SRB" initials on dark curtain, name reveal animation, profile photo placeholder
 2. **Education:** "Where I studied" (large bold heading), scroll-based stacking accordion - items collapse showing only institution name, expand on scroll to show degree, location, dates, and numbered coursework. 4 entries: NYU, UIC, Indus International School, Seven Hills
-3. **Works:** "Selected Works" (large bold heading), tabbed interface (Projects/Experience), separate numbering per tab, beige numbers, informational only
+3. **Works:** "Selected Works" (large bold heading), tabbed (PROJECTS)/(EXPERIENCE), sticky large number on left, content on right with impact metrics highlighted in 2-column cards with beige percentage numbers
 4. **About:** "About Me" (large bold heading), bio, photo placeholder, skills marquee, technical skills grid
 5. **Contact:** Form on dark background with social links
 

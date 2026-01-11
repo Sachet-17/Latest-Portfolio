@@ -56,23 +56,32 @@ const WorksSection = () => {
     <section 
       id="works" 
       ref={sectionRef}
-      className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24" 
+      className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-16 py-32" 
       data-testid="works-section"
     >
+      {/* Google Font for numbers */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+        .number-aesthetic {
+          font-family: 'Playfair Display', serif;
+          font-style: italic;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className={`mb-16 transition-all duration-1000 ease-out ${
+        <div className={`mb-20 transition-all duration-1000 ease-out ${
           headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-12">
+          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-16">
             Selected Works
           </h2>
           
           {/* Tabs */}
-          <div className="flex gap-8 border-b border-gray-800 pb-4">
+          <div className="flex gap-12 border-b border-gray-800 pb-6">
             <button
               onClick={() => setActiveTab('projects')}
-              className={`text-lg md:text-xl font-light pb-2 transition-all duration-400 relative ${
+              className={`text-lg md:text-xl tracking-wide pb-2 transition-all duration-400 relative ${
                 activeTab === 'projects' ? 'text-[#F5F1E8]' : 'text-gray-600 hover:text-gray-400'
               }`}
               data-testid="projects-tab"
@@ -84,7 +93,7 @@ const WorksSection = () => {
             </button>
             <button
               onClick={() => setActiveTab('experience')}
-              className={`text-lg md:text-xl font-light pb-2 transition-all duration-400 relative ${
+              className={`text-lg md:text-xl tracking-wide pb-2 transition-all duration-400 relative ${
                 activeTab === 'experience' ? 'text-[#F5F1E8]' : 'text-gray-600 hover:text-gray-400'
               }`}
               data-testid="experience-tab"
@@ -97,31 +106,20 @@ const WorksSection = () => {
           </div>
         </div>
 
-        {/* Works Items */}
+        {/* Works Items - Content LEFT, Number RIGHT */}
         <div className="relative">
           {currentWorks.map((work, index) => (
             <div 
               key={`${activeTab}-${work.id}`}
               ref={el => itemRefs.current[index] = el}
-              className="min-h-[80vh] py-16 border-t border-gray-800"
+              className="min-h-[85vh] py-20 border-t border-gray-800"
               data-testid={`${activeTab}-item-${index}`}
             >
-              <div className="grid grid-cols-12 gap-8 h-full">
-                {/* Left - Sticky Number */}
-                <div className="col-span-3 md:col-span-2">
-                  <div className="sticky top-32">
-                    <div className={`text-[15vw] md:text-[12vw] lg:text-[10vw] font-light leading-none transition-all duration-700 ${
-                      activeIndex === index ? 'text-[#C5B99A]' : 'text-[#333333]'
-                    }`}>
-                      {String(index + 1).padStart(2, '0')}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right - Content */}
-                <div className="col-span-9 md:col-span-10 space-y-8">
+              <div className="grid grid-cols-12 gap-8 md:gap-16 h-full">
+                {/* LEFT - Content */}
+                <div className="col-span-9 md:col-span-10 space-y-10 order-1">
                   {/* Label */}
-                  <div className="text-sm text-gray-500 uppercase tracking-wider">
+                  <div className="text-sm text-gray-500 uppercase tracking-widest">
                     {activeTab === 'projects' ? '(Project)' : '(Experience)'}
                   </div>
 
@@ -145,9 +143,9 @@ const WorksSection = () => {
 
                   {/* Impact Metrics - Highlighted */}
                   {work.achievements && work.achievements.length > 0 && (
-                    <div className="space-y-6 mt-12">
-                      <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-6">Impact</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-8 mt-16">
+                      <h4 className="text-sm text-gray-500 uppercase tracking-widest">Impact</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {work.achievements.map((achievement, idx) => {
                           // Extract percentage or number from achievement
                           const match = achievement.match(/(\d+%?)/);
@@ -159,14 +157,14 @@ const WorksSection = () => {
                           return (
                             <div 
                               key={idx}
-                              className="bg-[#1A1A1A] rounded-lg p-6 border border-gray-800 hover:border-[#C5B99A] transition-all duration-300 group"
+                              className="bg-[#151515] rounded-xl p-8 border border-gray-800/50 hover:border-[#C5B99A]/50 transition-all duration-500 group"
                             >
                               {highlight && (
-                                <div className="text-4xl md:text-5xl font-bold text-[#C5B99A] mb-3 group-hover:scale-105 transition-transform duration-300">
+                                <div className="text-5xl md:text-6xl number-aesthetic text-[#C5B99A] mb-4 group-hover:scale-105 transition-transform duration-500">
                                   {highlight}
                                 </div>
                               )}
-                              <p className="text-gray-400 text-sm leading-relaxed">
+                              <p className="text-gray-400 text-base leading-relaxed">
                                 {text.replace(/^(Improved|Reduced|Achieved|Cut|Enhanced|Secured)/i, '').trim()}
                               </p>
                             </div>
@@ -177,17 +175,28 @@ const WorksSection = () => {
                   )}
 
                   {/* Technologies */}
-                  <div className="pt-8">
-                    <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-4">Technologies</h4>
-                    <div className="flex flex-wrap gap-3">
+                  <div className="pt-10">
+                    <h4 className="text-sm text-gray-500 uppercase tracking-widest mb-6">Technologies</h4>
+                    <div className="flex flex-wrap gap-4">
                       {work.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-4 py-2 text-sm border border-gray-700 rounded-full text-gray-400 hover:bg-[#C5B99A] hover:text-[#0F0F0F] hover:border-[#C5B99A] transition-all duration-300"
+                          className="px-5 py-2.5 text-sm border border-gray-700/50 rounded-full text-gray-400 hover:bg-[#C5B99A] hover:text-[#0F0F0F] hover:border-[#C5B99A] transition-all duration-300"
                         >
                           {tech}
                         </span>
                       ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* RIGHT - Sticky Number */}
+                <div className="col-span-3 md:col-span-2 order-2">
+                  <div className="sticky top-32 text-right">
+                    <div className={`text-[18vw] md:text-[14vw] lg:text-[12vw] number-aesthetic leading-none transition-all duration-700 ${
+                      activeIndex === index ? 'text-[#C5B99A]' : 'text-[#1A1A1A]'
+                    }`}>
+                      {String(index + 1).padStart(2, '0')}
                     </div>
                   </div>
                 </div>
