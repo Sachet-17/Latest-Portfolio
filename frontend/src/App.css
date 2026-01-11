@@ -11,8 +11,8 @@ html {
 
 /* Selection Color */
 ::selection {
-    background-color: #000;
-    color: #fff;
+    background-color: #0F0F0F;
+    color: #F5F1E8;
 }
 
 /* Remove default transitions */
