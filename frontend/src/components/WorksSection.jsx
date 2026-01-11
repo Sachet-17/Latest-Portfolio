@@ -204,6 +204,7 @@ const WorksSection = () => {
             ? 'opacity-100 translate-y-0 pointer-events-auto' 
             : 'opacity-0 translate-y-8 pointer-events-none'
         }`}
+        style={{ display: showFloatingTabs ? 'block' : 'none' }}
       >
         <div className="bg-[#1A1A1A]/95 backdrop-blur-xl rounded-full px-2 py-2 border border-gray-700/50 shadow-2xl flex gap-1">
           <button
