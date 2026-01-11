@@ -75,10 +75,13 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <div 
-              className="text-sm font-medium cursor-pointer hover:opacity-70 transition-opacity duration-300"
+              className="text-sm font-medium cursor-pointer hover:opacity-70 transition-opacity duration-300 flex items-center"
               onClick={() => scrollToSection('#hero')}
             >
-              SACHET RANJAN BISI
+              <span className="min-w-[200px]">
+                {displayText}
+                <span className="animate-pulse">|</span>
+              </span>
             </div>
             <button
               onClick={() => setIsMenuOpen(true)}
