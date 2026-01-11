@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { skills, personalInfo } from '../data/mock';
+import { images } from '../config/assets';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const sectionRef = useRef(null);
   const aboutRef = useRef(null);
 
@@ -170,9 +172,18 @@ const AboutSection = () => {
             aboutVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
           }`}>
             <div className="aspect-[3/4] bg-[#E8E4DA] rounded-2xl overflow-hidden group">
-              <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] group-hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
-                <span className="text-gray-500 text-lg font-light">[Your Photo]</span>
-              </div>
+              {!imageError ? (
+                <img 
+                  src={images.profileAbout || images.profile}
+                  alt="Sachet Ranjan Bisi"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] group-hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
+                  <span className="text-gray-500 text-lg font-light">[Your Photo]</span>
+                </div>
+              )}
             </div>
           </div>
 
