@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,10 +15,10 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
+    { label: 'Home', href: '#hero' },
+    { label: 'Services', href: '#services' },
+    { label: 'Works', href: '#works' },
     { label: 'About', href: '#about' },
-    { label: 'Education', href: '#education' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' }
   ];
 
@@ -27,85 +27,98 @@ const Navbar = () => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setIsMobileMenuOpen(false);
+      setIsMenuOpen(false);
     }
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/80 backdrop-blur-md shadow-lg shadow-[#00aeef]/10 border-b border-gray-800' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo with gradient */}
-          <a
-            href="#hero"
-            onClick={(e) => scrollToSection(e, '#hero')}
-            className="text-xl font-light tracking-tight hover:opacity-70 transition-all duration-300 relative group"
-          >
-            <span className="bg-gradient-to-r from-[#00aeef] to-[#2d388a] bg-clip-text text-transparent">SRB</span>
-            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#00aeef] to-[#2d388a] group-hover:w-full transition-all duration-300" />
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+    <>
+      {/* Main Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            AI/ML Engineer & SDE
+          </div>
+          
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="px-4 py-2 text-sm hover:text-[#00aeef] transition-all duration-300 relative group"
+                className="text-sm hover:opacity-60 transition-opacity"
               >
                 {item.label}
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#00aeef] to-[#2d388a] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
-            <Button
-              size="sm"
-              className="ml-4 bg-gradient-to-r from-[#2d388a] to-[#00aeef] hover:from-[#1f2861] hover:to-[#0088bb] border-0 shadow-lg shadow-[#00aeef]/50 hover:shadow-[#00aeef]/70 transition-all duration-300 hover:scale-105"
-              onClick={(e) => scrollToSection(e, '#contact')}
-            >
-              Get in Touch
-            </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 hover:text-[#00aeef] transition-all duration-300 hover:scale-110"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+            onClick={() => setIsMenuOpen(true)}
+            className="p-2 hover:opacity-60 transition-opacity"
+            aria-label="Open menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <Menu className="w-6 h-6" />
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800 animate-fadeInDown">
-          <div className="px-6 py-4 space-y-3">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className="block py-2 hover:text-[#00aeef] transition-all duration-300 hover:translate-x-2"
+      {/* Full Screen Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[100] bg-white dark:bg-black">
+          <div className="h-full flex flex-col">
+            {/* Menu Header */}
+            <div className="p-6 lg:p-12 flex items-center justify-between">
+              <div className="text-sm text-gray-600 dark:text-gray-400">Menu</div>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 hover:opacity-60 transition-opacity"
+                aria-label="Close menu"
               >
-                {item.label}
-              </a>
-            ))}
-            <Button
-              className="w-full bg-gradient-to-r from-[#2d388a] to-[#00aeef] hover:from-[#1f2861] hover:to-[#0088bb] border-0 shadow-lg shadow-[#00aeef]/50"
-              onClick={(e) => scrollToSection(e, '#contact')}
-            >
-              Get in Touch
-            </Button>
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Menu Content */}
+            <div className="flex-1 flex items-center justify-center">
+              <div className="space-y-8">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => scrollToSection(e, item.href)}
+                    className="block text-6xl md:text-8xl font-light hover:opacity-60 transition-opacity"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Menu Footer */}
+            <div className="p-6 lg:p-12">
+              <div className="flex justify-between items-end">
+                <div>
+                  <h3 className="text-sm text-gray-600 dark:text-gray-400 mb-4">Socials</h3>
+                  <div className="space-y-2">
+                    <a href="https://linkedin.com/in/sachetbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:opacity-60 transition-opacity">
+                      LinkedIn
+                    </a>
+                    <a href="https://github.com/sacherbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:opacity-60 transition-opacity">
+                      Github
+                    </a>
+                  </div>
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Local time<br />
+                  {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 };
 
