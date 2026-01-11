@@ -100,7 +100,7 @@ const WorksSection = () => {
             }`}
           >
             <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase">
-              Selected Works
+              SELECTED WORKS/
             </h2>
           </div>
 

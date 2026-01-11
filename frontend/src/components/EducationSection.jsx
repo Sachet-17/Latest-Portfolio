@@ -101,7 +101,7 @@ const EducationSection = () => {
           }`}
         >
           <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase">
-            Where I studied
+            WHERE I STUDIED/
           </h2>
         </div>
 
