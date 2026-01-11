@@ -1,11 +1,17 @@
-/* Smooth Scrolling */
+/* Global Styles */
 html {
     scroll-behavior: smooth;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Selection Color */
 ::selection {
-    background-color: #00aeef;
+    background-color: #000;
     color: #fff;
 }
 
@@ -14,47 +20,17 @@ html {
     transition: none;
 }
 
-/* Add specific transitions where needed */
-button, a, input, textarea {
-    transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+/* Add specific smooth transitions */
+button,
+a,
+input,
+textarea,
+.transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Marquee Animation */
-@keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.animate-marquee {
-    animation: marquee 60s linear infinite;
-}
-
-.animate-marquee:hover {
-    animation-play-state: paused;
-}
-
-/* Menu Animations */
-@keyframes menuFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes menuItemSlide {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes menuFooterFade {
+/* Fade In Animation */
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -65,48 +41,69 @@ button, a, input, textarea {
     }
 }
 
-.animate-menu-fade-in {
-    animation: menuFadeIn 0.3s ease-out;
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
 }
 
-.animate-menu-footer-fade {
-    animation: menuFooterFade 0.6s ease-out 0.3s forwards;
-    opacity: 0;
+/* Menu Slide In */
+@keyframes menuSlideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
-/* Smooth image scaling */
-img {
+.animate-menu-slide-in {
+    animation: menuSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Menu Item Slide */
+@keyframes menuItemSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Smooth Image Scaling */
+img,
+.hover\:scale-105 {
     transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #000;
+    background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    background: #000;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #00aeef;
+    background: #333;
 }
 
-.dark ::-webkit-scrollbar-track {
-    background: #fff;
+/* Prevent text selection on interactive elements */
+button,
+a {
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-    background: #ccc;
+/* Smooth focus states */
+input:focus,
+textarea:focus {
+    outline: none;
 }
-
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: #00aeef;
-}
-
