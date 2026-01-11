@@ -139,6 +139,7 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
+        </div>
 
         {/* Skills Marquee - Moving train */}
         <div className={`mb-32 overflow-hidden transition-all duration-1000 delay-300 ${
