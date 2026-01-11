@@ -10,7 +10,7 @@ export const personalInfo = {
   website: "iamsrb.com",
   github: "https://github.com/sacherbisi",
   linkedin: "https://linkedin.com/in/sachetbisi",
-  bio: "I'm a graduate student at NYU pursuing my Master's in Computer Engineering with a focus on Machine Learning and AI. I specialize in building production-grade AI/ML systems, scalable microservices, and high-performance backend infrastructure. My work spans from designing RAG pipelines and deploying deep learning models to optimizing cloud architectures and CI/CD workflows.",
+  bio: "I'm Sachet Ranjan Bisi, a Computer Engineering graduate from NYU with hands-on experience in software development and AI/ML deployment. I've built scalable APIs, optimized backend systems, and deployed intelligent applications across AWS, GCP, and Azure.\n\nMy work spans from boosting system throughput to building an LLM-powered system that improved accuracy and halved reconciliation time. I'm passionate about designing reliable, impactful systems that blend innovation with real-world impact.\n\nOutside of work, I'm a tech enthusiast and content consumer who loves following the NBA, diving into anime and immersive TV shows, and solving problems over a good cup of coffee.",
   skills: [
     "AI & Machine Learning",
     "NLP & RAG Systems",
