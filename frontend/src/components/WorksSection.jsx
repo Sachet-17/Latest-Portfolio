@@ -6,6 +6,7 @@ const WorksSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
   const itemRefs = useRef([]);
 
   const currentWorks = activeTab === 'projects' ? projects : experience;
@@ -24,11 +25,11 @@ const WorksSection = () => {
           setHeaderVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      headerObserver.observe(sectionRef.current);
+    if (headerRef.current) {
+      headerObserver.observe(headerRef.current);
     }
 
     // Scroll handler for active item
@@ -70,9 +71,12 @@ const WorksSection = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className={`mb-20 transition-all duration-1000 ease-out ${
-          headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}>
+        <div 
+          ref={headerRef}
+          className={`mb-20 transition-all duration-1000 ease-out ${
+            headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
+        >
           <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-16">
             Selected Works
           </h2>
