@@ -50,7 +50,7 @@ const WorksSection = () => {
       ([entry]) => {
         setShowFloatingTabs(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0, rootMargin: '0px' }
     );
 
     if (sectionRef.current) {
