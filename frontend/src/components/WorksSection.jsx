@@ -5,6 +5,7 @@ const WorksSection = () => {
   const [activeTab, setActiveTab] = useState('projects');
   const [activeIndex, setActiveIndex] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const [showFloatingTabs, setShowFloatingTabs] = useState(false);
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const itemRefs = useRef([]);
