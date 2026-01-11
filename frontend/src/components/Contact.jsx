@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Send, Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -8,12 +8,31 @@ import { personalInfo } from '../data/mock';
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,11 +53,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24">
+    <section id="contact" className="bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24" ref={sectionRef} data-testid="contact-section">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {/* Left - Contact Info */}
-          <div>
+          <div 
+            className={`transform transition-all duration-800 ease-out ${
+              isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+            }`}
+          >
             <h2 className="text-5xl md:text-6xl font-light mb-8">
               Let's Connect
             </h2>
@@ -47,28 +70,43 @@ const Contact = () => {
             </p>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
-                <Mail className="w-5 h-5 mt-1 text-gray-400" />
+              <div 
+                className={`flex items-start gap-4 group hover:translate-x-3 transition-all duration-400 ${
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                }`}
+                style={{ transitionDelay: '200ms' }}
+              >
+                <Mail className="w-5 h-5 mt-1 text-[#C5B99A]" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Email</p>
-                  <a href={`mailto:${personalInfo.email}`} className="text-[#F5F1E8] hover:text-gray-300 transition-colors">
+                  <a href={`mailto:${personalInfo.email}`} className="text-[#F5F1E8] hover:text-[#C5B99A] transition-colors duration-300">
                     {personalInfo.email}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
-                <Phone className="w-5 h-5 mt-1 text-gray-400" />
+              <div 
+                className={`flex items-start gap-4 group hover:translate-x-3 transition-all duration-400 ${
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                }`}
+                style={{ transitionDelay: '300ms' }}
+              >
+                <Phone className="w-5 h-5 mt-1 text-[#C5B99A]" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Phone</p>
-                  <a href={`tel:${personalInfo.phone}`} className="text-[#F5F1E8] hover:text-gray-300 transition-colors">
+                  <a href={`tel:${personalInfo.phone}`} className="text-[#F5F1E8] hover:text-[#C5B99A] transition-colors duration-300">
                     {personalInfo.phone}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 group hover:translate-x-2 transition-transform duration-300">
-                <MapPin className="w-5 h-5 mt-1 text-gray-400" />
+              <div 
+                className={`flex items-start gap-4 group hover:translate-x-3 transition-all duration-400 ${
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                }`}
+                style={{ transitionDelay: '400ms' }}
+              >
+                <MapPin className="w-5 h-5 mt-1 text-[#C5B99A]" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Location</p>
                   <p className="text-[#F5F1E8]">{personalInfo.location}</p>
@@ -76,14 +114,20 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="mt-12 pt-12 border-t border-gray-800">
+            <div 
+              className={`mt-12 pt-12 border-t border-gray-800 transition-all duration-800 ease-out ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}
+              style={{ transitionDelay: '500ms' }}
+            >
               <p className="text-sm text-gray-500 mb-4">Connect with me</p>
               <div className="flex gap-4">
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300"
+                  className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300 hover:scale-110"
+                  data-testid="linkedin-link"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -91,7 +135,8 @@ const Contact = () => {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300"
+                  className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300 hover:scale-110"
+                  data-testid="github-link"
                 >
                   <Github className="w-5 h-5" />
                 </a>
@@ -100,15 +145,21 @@ const Contact = () => {
           </div>
 
           {/* Right - Contact Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div 
+            className={`transform transition-all duration-800 ease-out ${
+              isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
+            <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
               <Input
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your name"
                 required
-                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 focus:border-[#F5F1E8] transition-all duration-300"
+                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 focus:border-[#C5B99A] transition-all duration-400"
+                data-testid="contact-name-input"
               />
               <Input
                 name="email"
@@ -117,7 +168,8 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your email"
                 required
-                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 focus:border-[#F5F1E8] transition-all duration-300"
+                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 focus:border-[#C5B99A] transition-all duration-400"
+                data-testid="contact-email-input"
               />
               <Textarea
                 name="message"
@@ -126,12 +178,14 @@ const Contact = () => {
                 placeholder="Your message"
                 required
                 rows={6}
-                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 resize-none focus:border-[#F5F1E8] transition-all duration-300"
+                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 resize-none focus:border-[#C5B99A] transition-all duration-400"
+                data-testid="contact-message-input"
               />
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#F5F1E8] text-[#0F0F0F] hover:bg-[#E8E4DA] py-6 rounded-full font-normal group transition-all duration-300 hover:scale-105"
+                className="w-full bg-[#F5F1E8] text-[#0F0F0F] hover:bg-[#C5B99A] py-6 rounded-full font-normal group transition-all duration-400 hover:scale-[1.02]"
+                data-testid="contact-submit-btn"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
