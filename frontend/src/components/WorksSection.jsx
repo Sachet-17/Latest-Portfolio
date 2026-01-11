@@ -96,8 +96,10 @@ const WorksSection = () => {
           </h2>
         </div>
 
-        {/* Floating Tabs - Always visible pill */}
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+        {/* Floating Tabs - Only visible in Works section */}
+        <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+          showFloatingTabs ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}>
           <div className="bg-[#1A1A1A]/90 backdrop-blur-md rounded-full p-1.5 border border-gray-800/50 shadow-2xl flex gap-1">
             <button
               onClick={() => setActiveTab('projects')}
