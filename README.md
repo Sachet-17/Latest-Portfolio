@@ -210,20 +210,10 @@ The portfolio uses a warm beige and soft black theme:
 2. **Education** - Accordion-style with stacking animation
 3. **Works** - Tabbed Projects/Experience with floating switcher
 4. **About** - Skills grid, marquee, bio, profile photo
-5. **Contact** - Contact form (currently UI only)
+5. **Contact** - Contact information with email, phone, and social links
 6. **Footer** - Copyright and links
 
 ---
-
-## ⚠️ What's Not Working Yet
-
-### Contact Form
-The contact form is **UI only** - it shows a success toast but doesn't actually send emails or save data.
-
-**To make it functional:**
-1. Set up the backend endpoint in `/backend/server.py`
-2. Connect to MongoDB or an email service
-3. Update `/frontend/src/components/Contact.jsx` to call the API
 
 ---
 
@@ -245,19 +235,27 @@ uvicorn server:app --reload --port 8001
 
 ## 📦 Deployment
 
-The site is configured for deployment on Emergent platform. 
+The site is deployed on **Vercel** and live at [www.iamsrb.com](https://www.iamsrb.com).
 
-To deploy elsewhere:
-1. Build: `cd frontend && yarn build`
-2. Deploy the `build` folder to your hosting provider
+**To deploy to Vercel:**
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Set the **Root Directory** to `frontend`
+4. Vercel will auto-detect the React app and deploy
+
+For local build:
+```bash
+cd frontend
+npm install --legacy-peer-deps
+npm run build
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Frontend:** React, TailwindCSS, Framer Motion concepts
-- **Backend:** FastAPI (Python)
-- **Database:** MongoDB (planned for contact form)
+- **Deployment:** Vercel
 - **Fonts:** System fonts + Playfair Display (for numbers)
 
 ---
