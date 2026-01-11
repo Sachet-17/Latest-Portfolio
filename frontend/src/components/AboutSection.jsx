@@ -49,7 +49,7 @@ const AboutSection = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className="min-h-screen bg-[#F5F1E8] px-6 lg:px-16 py-32" 
+      className="min-h-screen bg-[#F5F1E8] dark:bg-[#0A0A0A] px-6 lg:px-16 py-32 transition-colors duration-500" 
       data-testid="about-section"
     >
       {/* Google Font */}
@@ -78,7 +78,7 @@ const AboutSection = () => {
         }`}>
           {/* Left - Large Heading */}
           <div>
-            <h2 className="text-[10vw] md:text-[6vw] lg:text-[4.5vw] font-bold leading-[1.1] tracking-tight uppercase text-[#0F0F0F]">
+            <h2 className="text-[10vw] md:text-[6vw] lg:text-[4.5vw] font-bold leading-[1.1] tracking-tight uppercase text-[#0F0F0F] dark:text-[#F5F1E8]">
               Developer<br />
               Designer<br />
               Creator /
@@ -171,7 +171,7 @@ const AboutSection = () => {
           <div className={`transition-all duration-1000 delay-200 ${
             aboutVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
           }`}>
-            <div className="aspect-[3/4] bg-[#E8E4DA] rounded-2xl overflow-hidden group">
+            <div className="aspect-[3/4] bg-[#E8E4DA] dark:bg-[#1A1A1A] rounded-2xl overflow-hidden group">
               {!imageError ? (
                 <img 
                   src={images.profileAbout || images.profile}
@@ -180,8 +180,8 @@ const AboutSection = () => {
                   onError={() => setImageError(true)}
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] group-hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
-                  <span className="text-gray-500 text-lg font-light">[Your Photo]</span>
+                <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] dark:from-[#1A1A1A] dark:via-[#252525] dark:to-[#1A1A1A] group-hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
+                  <span className="text-gray-500 dark:text-gray-400 text-lg font-light">[Your Photo]</span>
                 </div>
               )}
             </div>
@@ -191,15 +191,15 @@ const AboutSection = () => {
           <div className={`space-y-8 transition-all duration-1000 delay-400 ${
             aboutVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
           }`}>
-            <div className="text-sm text-gray-500 uppercase tracking-widest">
+            <div className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest">
               (About Me)
             </div>
             
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F0F0F] leading-tight">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F0F0F] dark:text-[#F5F1E8] leading-tight">
               I'm a software engineer driven by a passion for turning complex problems into clean, efficient solutions.
             </h3>
 
-            <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
+            <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               <p>
                 I am a passionate AI/ML Engineer and Software Developer with expertise in building full-stack applications and intelligent systems using modern technologies.
               </p>
@@ -212,14 +212,14 @@ const AboutSection = () => {
             </div>
 
             {/* Location & Availability */}
-            <div className="pt-8 border-t border-[#D2CEC4] flex gap-12">
+            <div className="pt-8 border-t border-[#D2CEC4] dark:border-gray-700 flex gap-12">
               <div>
-                <div className="text-sm text-gray-500 uppercase tracking-wider mb-2">Location</div>
-                <div className="text-[#0F0F0F] font-medium">{personalInfo.location}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Location</div>
+                <div className="text-[#0F0F0F] dark:text-[#F5F1E8] font-medium">{personalInfo.location}</div>
               </div>
               <div>
-                <div className="text-sm text-gray-500 uppercase tracking-wider mb-2">Status</div>
-                <div className="text-[#0F0F0F] font-medium flex items-center gap-2">
+                <div className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Status</div>
+                <div className="text-[#0F0F0F] dark:text-[#F5F1E8] font-medium flex items-center gap-2">
                   <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                   Open to Work
                 </div>
