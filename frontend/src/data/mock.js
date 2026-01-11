@@ -29,6 +29,7 @@ export const education = [
     location: "New York, NY",
     period: "Sep 2023 – May 2025",
     gpa: "",
+    description: "Specialized in Machine Learning, AI systems, and scalable backend engineering. Built production-grade RAG pipelines, deployed deep learning models, and optimized cloud architectures across AWS and GCP.",
     coursework: ["Machine Learning", "Artificial Intelligence", "Internet Protocols", "Network Security"]
   },
   {
@@ -39,6 +40,7 @@ export const education = [
     location: "Chicago, IL",
     period: "Aug 2019 – May 2023",
     gpa: "",
+    description: "Built a strong foundation in computer science fundamentals, embedded systems, and software engineering. Gained hands-on experience with circuit design, signal processing, and full-stack development.",
     coursework: ["Data Structures", "Computer Vision", "Systems Programming", "Computer Architecture"]
   },
   {
@@ -49,6 +51,7 @@ export const education = [
     location: "Hyderabad, India",
     period: "Aug 2015 – May 2019",
     gpa: "",
+    description: "Completed the International Baccalaureate Diploma Programme with Higher Level courses in Computer Science, Business, and Mathematics. Developed analytical thinking and a global perspective through rigorous academics.",
     coursework: ["Computer Science HL", "Business HL", "Maths HL", "Physics SL", "English SL", "Hindi SL"]
   },
   {
@@ -59,6 +62,7 @@ export const education = [
     location: "India",
     period: "Until May 2015",
     gpa: "",
+    description: "Foundational years at a prestigious residential school that nurtured discipline, curiosity, and a love for learning. Participated in various extracurricular activities including sports and cultural events.",
     coursework: ["General Curriculum"]
   }
 ];
