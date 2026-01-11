@@ -163,8 +163,9 @@ export const projects = [
 ];
 
 export const skills = {
-  languages: ["Python", "Java", "JavaScript", "SQL", "C++"],
-  frameworks: ["FastAPI", "Django REST", "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "LangChain", "React.js"],
+  languages: ["Python", "SQL", "C++", "Java", "TypeScript", "JavaScript", "Git", "Postman", "Docker", "Firebase"],
+  frameworks: ["React", "Node.js", "Express.js", "Flask", "Bootstrap", "jQuery", "TailwindCSS", "Framer Motion", "GSAP"],
+  concepts: ["DSA", "DBMS", "OOP", "Operating Systems", "System Design"],
   cloud: ["AWS", "GCP", "Docker", "Jenkins", "GitLab CI/CD", "Kubernetes"],
   tools: ["VS Code", "Git", "Postman", "Jupyter Notebook", "PyTest", "JUnit"]
 };
