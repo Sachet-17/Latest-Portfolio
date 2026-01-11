@@ -1,6 +1,32 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Services = () => {
+  const [visibleItems, setVisibleItems] = useState([]);
+  const sectionRef = useRef(null);
+  const itemRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = itemRefs.current.indexOf(entry.target);
+            if (index !== -1 && !visibleItems.includes(index)) {
+              setVisibleItems(prev => [...prev, index]);
+            }
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    itemRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const services = [
     {
       number: '01',
@@ -35,7 +61,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="min-h-screen bg-black dark:bg-white px-6 lg:px-12 py-24">
+    <section id="services" className="min-h-screen bg-black dark:bg-white px-6 lg:px-12 py-24" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-24">
@@ -53,16 +79,25 @@ const Services = () => {
         {/* Services List */}
         <div className="space-y-24">
           {services.map((service, index) => (
-            <div key={index} className="border-t border-gray-800 dark:border-gray-300 pt-12">
+            <div 
+              key={index} 
+              ref={el => itemRefs.current[index] = el}
+              className={`border-t border-gray-800 dark:border-gray-300 pt-12 transform transition-all duration-1000 ${
+                visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Number */}
                 <div className="md:col-span-2">
-                  <div className="text-6xl font-light text-gray-700 dark:text-gray-400">({service.number})</div>
+                  <div className="text-6xl font-light text-gray-700 dark:text-gray-400 hover:text-[#00aeef] transition-colors duration-500">
+                    ({service.number})
+                  </div>
                 </div>
 
                 {/* Content */}
                 <div className="md:col-span-10">
-                  <h3 className="text-4xl md:text-5xl font-light text-white dark:text-black mb-6">
+                  <h3 className="text-4xl md:text-5xl font-light text-white dark:text-black mb-6 hover:text-[#00aeef] dark:hover:text-[#00aeef] transition-colors duration-500">
                     {service.title}
                   </h3>
                   <p className="text-gray-400 dark:text-gray-600 leading-relaxed mb-8 max-w-2xl">
@@ -72,7 +107,10 @@ const Services = () => {
                   {/* Stack Items */}
                   <div className="space-y-3">
                     {service.stack.map((row, rowIndex) => (
-                      <div key={rowIndex} className="flex items-center gap-4 border-b border-gray-800 dark:border-gray-300 pb-3">
+                      <div 
+                        key={rowIndex} 
+                        className="flex items-center gap-4 border-b border-gray-800 dark:border-gray-300 pb-3 transform transition-all duration-500 hover:translate-x-2"
+                      >
                         <span className="text-sm text-gray-600 dark:text-gray-500 min-w-[30px]">
                           {String(rowIndex + 1).padStart(2, '0')}
                         </span>
