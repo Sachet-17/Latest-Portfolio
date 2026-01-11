@@ -26,7 +26,7 @@ const EducationSection = () => {
     rafRef.current = requestAnimationFrame(() => {
       const currentScrollY = window.scrollY;
       
-      // Find the item closest to the viewport center
+      // Find the item closest to the viewport center with smoother detection
       let closestIndex = expandedIndexRef.current;
       let closestDistance = Infinity;
       const viewportCenter = window.innerHeight / 2;
@@ -37,8 +37,8 @@ const EducationSection = () => {
           const itemCenter = rect.top + rect.height / 2;
           const distance = Math.abs(itemCenter - viewportCenter);
           
-          // Item is near center of viewport (increased threshold for smoother transitions)
-          if (itemCenter > viewportCenter - 300 && itemCenter < viewportCenter + 300) {
+          // Larger threshold for smoother, earlier transitions
+          if (itemCenter > viewportCenter - 400 && itemCenter < viewportCenter + 400) {
             if (distance < closestDistance) {
               closestDistance = distance;
               closestIndex = index;
@@ -47,7 +47,7 @@ const EducationSection = () => {
         }
       });
       
-      // Only update if the index actually changed
+      // Only update if the index actually changed (prevents unnecessary re-renders)
       if (closestIndex !== expandedIndexRef.current) {
         setExpandedIndex(closestIndex);
       }
@@ -118,6 +118,17 @@ const EducationSection = () => {
           font-family: 'Playfair Display', serif;
           font-style: italic;
         }
+        .education-expand {
+          transition: grid-template-rows 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      opacity 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      margin-top 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .education-text-transition {
+          transition: color 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .education-item-transition {
+          transition: all 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
       `}</style>
 
       <div className="max-w-7xl mx-auto">
@@ -143,7 +154,7 @@ const EducationSection = () => {
               <div 
                 key={edu.id} 
                 ref={el => itemRefs.current[index] = el}
-                className={`border-t border-gray-800 transition-all duration-1000 ease-in-out ${
+                className={`border-t border-gray-800 education-item-transition ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ transitionDelay: `${index * 50}ms` }}
@@ -154,7 +165,7 @@ const EducationSection = () => {
                   {/* LEFT - Content */}
                   <div className="col-span-9 md:col-span-10 order-1">
                     {/* Institution Name - Main Heading */}
-                    <h3 className={`text-2xl md:text-4xl lg:text-5xl font-bold transition-all duration-700 ease-in-out ${
+                    <h3 className={`text-2xl md:text-4xl lg:text-5xl font-bold education-text-transition ${
                       isExpanded ? 'text-[#F5F1E8]' : 'text-[#555555]'
                     }`}>
                       {edu.institution}
@@ -162,7 +173,7 @@ const EducationSection = () => {
 
                     {/* Expanded Content with smooth transition */}
                     <div 
-                      className={`grid transition-all duration-1000 ease-in-out ${
+                      className={`grid education-expand ${
                         isExpanded 
                           ? 'grid-rows-[1fr] opacity-100 mt-8' 
                           : 'grid-rows-[0fr] opacity-0 mt-0'
@@ -209,7 +220,7 @@ const EducationSection = () => {
                   {/* RIGHT - Sticky Number */}
                   <div className="col-span-3 md:col-span-2 order-2">
                     <div className="sticky top-32 text-right">
-                      <div className={`text-6xl md:text-7xl lg:text-8xl number-aesthetic transition-all duration-700 ease-in-out ${
+                      <div className={`text-6xl md:text-7xl lg:text-8xl number-aesthetic education-text-transition ${
                         isExpanded ? 'text-[#C5B99A]' : 'text-[#333333]'
                       }`}>
                         {String(index + 1).padStart(2, '0')}
