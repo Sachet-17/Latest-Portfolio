@@ -137,6 +137,8 @@ const Hero = () => {
                     <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] hover:scale-105 transition-transform duration-700 ease-out items-center justify-center hidden">
                       <span className="text-gray-500 text-lg font-light">[Hero Image]</span>
                     </div>
+                    {/* Gradient overlay for text visibility */}
+                    <div className="absolute inset-0 bg-gradient-to-l from-[#F5F1E8]/80 via-[#F5F1E8]/40 to-transparent pointer-events-none"></div>
                   </div>
                 </div>
               </div>
