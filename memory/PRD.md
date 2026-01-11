@@ -88,9 +88,8 @@ Build a professional portfolio website for an AI/ML Engineer and Software Develo
 ```
 
 ## Deployment
-- Ready for Emergent deployment
-- Custom domain can be connected via "Link domain" feature
-- Cost: 50 credits/month
+- Ready for deployment
+- Can be deployed to any hosting platform (Vercel, Netlify, etc.)
 
 ## Backlog
 
