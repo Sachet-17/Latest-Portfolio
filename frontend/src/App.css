@@ -13,9 +13,24 @@ body {
     overflow-x: hidden;
 }
 
+/* ============================================
+   DARK MODE STYLES
+   ============================================ */
+
 /* Selection Color */
 ::selection {
     background-color: #0F0F0F;
+    color: #F5F1E8;
+}
+
+.dark ::selection {
+    background-color: #F5F1E8;
+    color: #0F0F0F;
+}
+
+/* Dark mode transitions */
+.dark body {
+    background-color: #0A0A0A;
     color: #F5F1E8;
 }
 
@@ -25,6 +40,39 @@ a,
 input,
 textarea {
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   SMOOTH SECTION TRANSITIONS
+   ============================================ */
+
+section {
+    position: relative;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Reveal animation for sections */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Parallax depth effect */
+.parallax-section {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Smooth color transitions for dark mode */
+.transition-theme {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
 /* ============================================
