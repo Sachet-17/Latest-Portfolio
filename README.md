@@ -2,6 +2,10 @@
 
 A modern, animated portfolio website for an AI/ML Engineer and Software Developer.
 
+## 🌐 Live Website
+
+**Visit the live portfolio:** [www.iamsrb.com](https://www.iamsrb.com)
+
 ## 🌐 Live Features
 
 - **Opening Animation** - Curtain reveal with "SRB" logo
