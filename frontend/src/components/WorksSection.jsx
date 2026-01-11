@@ -35,7 +35,7 @@ const WorksSection = () => {
   ];
 
   return (
-    <section id="works" className="min-h-screen bg-black text-white px-6 lg:px-12 py-24">
+    <section id="works" className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-24">
@@ -63,7 +63,7 @@ const WorksSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Number */}
                 <div className="md:col-span-2">
-                  <div className="text-8xl md:text-9xl font-light text-gray-800 hover:text-white transition-colors duration-500">
+                  <div className="text-8xl md:text-9xl font-light text-gray-800 hover:text-[#F5F1E8] transition-colors duration-500">
                     {String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
@@ -72,8 +72,8 @@ const WorksSection = () => {
                 <div className="md:col-span-10 space-y-6">
                   {/* Image/Visual for Projects */}
                   {work.type === 'project' && (
-                    <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden group cursor-pointer mb-6">
-                      <div className="w-full h-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
+                    <div className="aspect-video bg-[#1A1A1A] rounded-xl overflow-hidden group cursor-pointer mb-6">
+                      <div className="w-full h-full bg-gradient-to-br from-[#1A1A1A] via-[#252525] to-[#2F2F2F] hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
                         <span className="text-gray-600 text-sm">[Project Screenshot]</span>
                       </div>
                     </div>
@@ -96,7 +96,7 @@ const WorksSection = () => {
                             href={work.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 border border-gray-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                            className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300"
                           >
                             <Github className="w-5 h-5" />
                           </a>
@@ -106,7 +106,7 @@ const WorksSection = () => {
                             href={work.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 border border-gray-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                            className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300"
                           >
                             <ExternalLink className="w-5 h-5" />
                           </a>
@@ -124,7 +124,7 @@ const WorksSection = () => {
                     {work.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 text-sm border border-gray-700 rounded-full text-gray-400 hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-default"
+                        className="px-4 py-2 text-sm border border-gray-700 rounded-full text-gray-400 hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300 cursor-default"
                       >
                         {tech}
                       </span>
@@ -135,7 +135,7 @@ const WorksSection = () => {
                   {work.achievements && work.achievements.length > 0 && (
                     <div className="space-y-2 mt-6">
                       {work.achievements.map((achievement, idx) => (
-                        <div key={idx} className="flex items-start gap-3 text-sm text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300">
+                        <div key={idx} className="flex items-start gap-3 text-sm text-gray-400 hover:text-[#F5F1E8] hover:translate-x-2 transition-all duration-300">
                           <span className="mt-1.5">•</span>
                           <span>{achievement}</span>
                         </div>

@@ -36,13 +36,13 @@ const AboutSection = () => {
   const duplicatedSkills = [...allSkills, ...allSkills];
 
   return (
-    <section id="about" className="min-h-screen bg-white px-6 lg:px-12 py-24" ref={sectionRef}>
+    <section id="about" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 py-24" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className={`mb-24 transform transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
         }`}>
-          <h2 className="text-[8vw] md:text-[6vw] font-light text-black mb-8">
+          <h2 className="text-[8vw] md:text-[6vw] font-light text-[#0F0F0F] mb-8">
             ABOUT ME /
           </h2>
         </div>
@@ -53,8 +53,8 @@ const AboutSection = () => {
           <div className={`transform transition-all duration-1000 delay-200 ${
             isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
           }`}>
-            <div className="aspect-[3/4] bg-gray-200 rounded-2xl overflow-hidden cursor-pointer">
-              <div className="w-full h-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
+            <div className="aspect-[3/4] bg-[#E8E4DA] rounded-2xl overflow-hidden cursor-pointer">
+              <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
                 <span className="text-gray-500 text-lg">[Your Photo]</span>
               </div>
             </div>
@@ -96,7 +96,7 @@ const AboutSection = () => {
             <div className="flex animate-marquee whitespace-nowrap">
               {duplicatedSkills.map((skill, index) => (
                 <div key={index} className="mx-8">
-                  <span className="text-6xl md:text-8xl font-bold text-transparent hover:text-black transition-colors duration-500" style={{
+                  <span className="text-6xl md:text-8xl font-bold text-transparent hover:text-[#0F0F0F] transition-colors duration-500" style={{
                     WebkitTextStroke: '1px rgba(0,0,0,0.2)',
                     cursor: 'default'
                   }}>
@@ -117,17 +117,17 @@ const AboutSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Languages & Tools */}
             <div>
-              <h4 className="text-lg font-light mb-6 pb-3 border-b border-gray-200">Languages & Tools</h4>
+              <h4 className="text-lg font-light mb-6 pb-3 border-b border-[#D2CEC4]">Languages & Tools</h4>
               <div className="space-y-3">
                 {skills.languages.map((skill) => (
-                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-black hover:translate-x-2 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-[#0F0F0F] hover:translate-x-2 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F]"></div>
                     <span className="text-sm">{skill}</span>
                   </div>
                 ))}
                 {skills.tools.slice(0, 4).map((skill) => (
-                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-black hover:translate-x-2 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-[#0F0F0F] hover:translate-x-2 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F]"></div>
                     <span className="text-sm">{skill}</span>
                   </div>
                 ))}
@@ -136,11 +136,11 @@ const AboutSection = () => {
 
             {/* Frameworks */}
             <div>
-              <h4 className="text-lg font-light mb-6 pb-3 border-b border-gray-200">Frameworks & Libraries</h4>
+              <h4 className="text-lg font-light mb-6 pb-3 border-b border-[#D2CEC4]">Frameworks & Libraries</h4>
               <div className="space-y-3">
                 {skills.frameworks.map((skill) => (
-                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-black hover:translate-x-2 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-[#0F0F0F] hover:translate-x-2 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F]"></div>
                     <span className="text-sm">{skill}</span>
                   </div>
                 ))}
@@ -149,11 +149,11 @@ const AboutSection = () => {
 
             {/* Cloud */}
             <div>
-              <h4 className="text-lg font-light mb-6 pb-3 border-b border-gray-200">Cloud & DevOps</h4>
+              <h4 className="text-lg font-light mb-6 pb-3 border-b border-[#D2CEC4]">Cloud & DevOps</h4>
               <div className="space-y-3">
                 {skills.cloud.map((skill) => (
-                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-black hover:translate-x-2 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <div key={skill} className="flex items-center gap-3 text-gray-700 hover:text-[#0F0F0F] hover:translate-x-2 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0F0F0F]"></div>
                     <span className="text-sm">{skill}</span>
                   </div>
                 ))}
