@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className="py-12 px-6 lg:px-12 border-t border-gray-800 bg-black relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2d388a]/5 to-transparent" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <button
               onClick={scrollToTop}
-              className="text-xl font-light tracking-tight hover:opacity-70 transition-all duration-300 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:scale-105 transform inline-block"
+              className="text-xl font-light tracking-tight hover:opacity-70 transition-all duration-300 bg-gradient-to-r from-[#00aeef] to-[#2d388a] bg-clip-text text-transparent hover:scale-105 transform inline-block"
             >
               {personalInfo.name}
             </button>
@@ -35,26 +35,26 @@ const Footer = () => {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
+              className="p-3 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
               aria-label="GitHub"
             >
-              <Github className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+              <Github className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
             </a>
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
+              className="p-3 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+              <Linkedin className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="p-3 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
+              className="p-3 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
               aria-label="Email"
             >
-              <Mail className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+              <Mail className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
             </a>
           </div>
 
@@ -65,10 +65,10 @@ const Footer = () => {
             </div>
             <button
               onClick={scrollToTop}
-              className="p-2 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
+              className="p-2 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
               aria-label="Scroll to top"
             >
-              <ArrowUp className="h-4 w-4 group-hover:text-purple-400 transition-colors" />
+              <ArrowUp className="h-4 w-4 group-hover:text-[#00aeef] transition-colors" />
             </button>
           </div>
         </div>

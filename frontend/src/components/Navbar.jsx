@@ -34,7 +34,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/80 backdrop-blur-md shadow-lg shadow-purple-500/10 border-b border-gray-800' : 'bg-transparent'
+        isScrolled ? 'bg-black/80 backdrop-blur-md shadow-lg shadow-[#00aeef]/10 border-b border-gray-800' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -45,8 +45,8 @@ const Navbar = () => {
             onClick={(e) => scrollToSection(e, '#hero')}
             className="text-xl font-light tracking-tight hover:opacity-70 transition-all duration-300 relative group"
           >
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">SRB</span>
-            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300" />
+            <span className="bg-gradient-to-r from-[#00aeef] to-[#2d388a] bg-clip-text text-transparent">SRB</span>
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#00aeef] to-[#2d388a] group-hover:w-full transition-all duration-300" />
           </a>
 
           {/* Desktop Navigation */}
@@ -56,15 +56,15 @@ const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="px-4 py-2 text-sm hover:text-purple-400 transition-all duration-300 relative group"
+                className="px-4 py-2 text-sm hover:text-[#00aeef] transition-all duration-300 relative group"
               >
                 {item.label}
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300" />
+                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#00aeef] to-[#2d388a] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <Button
               size="sm"
-              className="ml-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 border-0 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105"
+              className="ml-4 bg-gradient-to-r from-[#2d388a] to-[#00aeef] hover:from-[#1f2861] hover:to-[#0088bb] border-0 shadow-lg shadow-[#00aeef]/50 hover:shadow-[#00aeef]/70 transition-all duration-300 hover:scale-105"
               onClick={(e) => scrollToSection(e, '#contact')}
             >
               Get in Touch
@@ -73,7 +73,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 hover:text-purple-400 transition-all duration-300 hover:scale-110"
+            className="md:hidden p-2 hover:text-[#00aeef] transition-all duration-300 hover:scale-110"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -91,13 +91,13 @@ const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="block py-2 hover:text-purple-400 transition-all duration-300 hover:translate-x-2"
+                className="block py-2 hover:text-[#00aeef] transition-all duration-300 hover:translate-x-2"
               >
                 {item.label}
               </a>
             ))}
             <Button
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 border-0 shadow-lg shadow-purple-500/50"
+              className="w-full bg-gradient-to-r from-[#2d388a] to-[#00aeef] hover:from-[#1f2861] hover:to-[#0088bb] border-0 shadow-lg shadow-[#00aeef]/50"
               onClick={(e) => scrollToSection(e, '#contact')}
             >
               Get in Touch
