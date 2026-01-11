@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 
 const Footer = () => {
@@ -9,68 +9,103 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navItems = [
+    { label: 'Home', href: '#hero' },
+    { label: 'Services', href: '#services' },
+    { label: 'Works', href: '#works' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' }
+  ];
+
+  const scrollToSection = (e, href) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <footer className="py-12 px-6 lg:px-12 border-t border-gray-800 bg-black relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2d388a]/5 to-transparent" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left: Name/Logo */}
-          <div className="text-center md:text-left">
-            <button
-              onClick={scrollToTop}
-              className="text-xl font-light tracking-tight hover:opacity-70 transition-all duration-300 bg-gradient-to-r from-[#00aeef] to-[#2d388a] bg-clip-text text-transparent hover:scale-105 transform inline-block"
-            >
-              {personalInfo.name}
-            </button>
-            <p className="text-sm text-gray-500 mt-1">
-              {personalInfo.title}
-            </p>
+    <footer className="bg-black dark:bg-white px-6 lg:px-12 py-12 border-t border-gray-800 dark:border-gray-300">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Menu */}
+          <div>
+            <h3 className="text-sm text-gray-600 dark:text-gray-500 mb-4">Menu</h3>
+            <div className="space-y-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className="block text-sm text-white dark:text-black hover:text-[#00aeef] dark:hover:text-[#00aeef] transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Center: Social Links */}
-          <div className="flex gap-4">
-            <a
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
-            </a>
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
-            </a>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="p-3 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
-            </a>
+          {/* Socials */}
+          <div>
+            <h3 className="text-sm text-gray-600 dark:text-gray-500 mb-4">Socials</h3>
+            <div className="space-y-2">
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-white dark:text-black hover:text-[#00aeef] dark:hover:text-[#00aeef] transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
+              </a>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-white dark:text-black hover:text-[#00aeef] dark:hover:text-[#00aeef] transition-colors"
+              >
+                <Github className="w-4 h-4" />
+                Github
+              </a>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="flex items-center gap-2 text-sm text-white dark:text-black hover:text-[#00aeef] dark:hover:text-[#00aeef] transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                Email
+              </a>
+            </div>
           </div>
 
-          {/* Right: Copyright & Scroll to Top */}
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-gray-500">
-              © {currentYear} All rights reserved.
+          {/* Local Time */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">Local time</p>
+              <p className="text-sm text-white dark:text-black">
+                {new Date().toLocaleTimeString('en-US', { 
+                  hour: '2-digit', 
+                  minute: '2-digit', 
+                  second: '2-digit',
+                  hour12: true
+                })}, EST
+              </p>
             </div>
             <button
               onClick={scrollToTop}
-              className="p-2 border border-gray-800 rounded-lg hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00aeef]/50 group"
+              className="self-end p-3 border border-gray-700 dark:border-gray-400 rounded-full hover:bg-white dark:hover:bg-black hover:border-white dark:hover:border-black transition-colors group"
               aria-label="Scroll to top"
             >
-              <ArrowUp className="h-4 w-4 group-hover:text-[#00aeef] transition-colors" />
+              <ArrowUp className="w-5 h-5 text-white dark:text-black group-hover:text-black dark:group-hover:text-white" />
             </button>
           </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="mt-12 pt-8 border-t border-gray-800 dark:border-gray-300 text-center">
+          <p className="text-sm text-gray-600 dark:text-gray-500">
+            © {currentYear} {personalInfo.name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
