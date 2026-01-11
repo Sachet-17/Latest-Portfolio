@@ -1,128 +1,61 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Code2, Database, Cloud, Cpu, TrendingUp } from 'lucide-react';
-import { Badge } from './ui/badge';
-import { personalInfo, skills } from '../data/mock';
+import React from 'react';
+import { personalInfo } from '../data/mock';
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  const skillCategories = [
-    {
-      title: 'Languages',
-      icon: Code2,
-      items: skills.languages,
-      color: 'from-[#2d388a] to-[#00aeef]'
-    },
-    {
-      title: 'Frameworks & Libraries',
-      icon: Database,
-      items: skills.frameworks,
-      color: 'from-[#00aeef] to-[#2d388a]'
-    },
-    {
-      title: 'Cloud & DevOps',
-      icon: Cloud,
-      items: skills.cloud,
-      color: 'from-[#2d388a] to-[#00aeef]'
-    },
-    {
-      title: 'Tools',
-      icon: Cpu,
-      items: skills.tools,
-      color: 'from-[#00aeef] to-[#2d388a]'
-    }
-  ];
-
   return (
-    <section id="about" className="py-24 px-6 lg:px-12 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden" ref={sectionRef}>
-      {/* Background gradient orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#2d388a]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00aeef]/10 rounded-full blur-3xl" />
+    <section id="about" className="min-h-screen bg-gray-100 dark:bg-black px-6 lg:px-12 py-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          {/* Image Placeholder */}
+          <div className="w-full aspect-[3/4] bg-gray-300 dark:bg-gray-800 rounded-lg"></div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className={`mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex items-center gap-3 mb-6">
-            <TrendingUp className="h-8 w-8 text-[#00aeef]" />
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight">
-              About Me
-            </h2>
-          </div>
-          <div className="w-20 h-1 bg-gradient-to-r from-[#2d388a] to-[#00aeef] rounded-full" />
-        </div>
+          {/* Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="text-sm text-gray-600 dark:text-gray-500">(About Me)</div>
+              <p className="text-xl md:text-2xl leading-relaxed text-gray-800 dark:text-gray-200">
+                I'm a software engineer driven by a passion for turning complex problems into clean, efficient solutions.
+              </p>
+            </div>
 
-        {/* Bio with enhanced styling */}
-        <div className={`mb-20 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#2d388a] to-[#00aeef] rounded-lg blur opacity-20" />
-            <p className="relative text-lg md:text-xl leading-relaxed text-gray-300 max-w-4xl bg-gray-900/50 backdrop-blur-sm p-8 rounded-lg border border-gray-800">
-              {personalInfo.bio}
-            </p>
-          </div>
-        </div>
+            <div className="space-y-6 text-gray-700 dark:text-gray-400 leading-relaxed">
+              <p>
+                I am a passionate AI/ML Engineer and Software Developer with expertise in building full-stack applications and intelligent systems using modern technologies. My journey in tech began with a curiosity for solving real-world problems through innovative AI solutions, which evolved into a love for crafting scalable, production-ready systems.
+              </p>
+              <p>
+                Currently pursuing my Master's in Computer Engineering at New York University, I focus on Machine Learning, AI, and backend systems. My experience spans from developing RAG pipelines and deploying deep learning models to optimizing cloud architectures and building high-performance APIs.
+              </p>
+              <p>
+                Beyond coding, I thrive in collaborative environments and enjoy tackling challenging problems with creative, data-driven solutions. I aim to contribute to impactful projects that make a difference in users' lives.
+              </p>
+            </div>
 
-        {/* Skills Grid with staggered animations */}
-        <div>
-          <h3 className={`text-2xl md:text-3xl font-light mb-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Technical Expertise
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {skillCategories.map((category, index) => {
-              const IconComponent = category.icon;
-              return (
-                <div
-                  key={category.title}
-                  className={`group relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                  style={{ transitionDelay: `${400 + index * 100}ms` }}
-                >
-                  {/* Glow effect on hover */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#2d388a] to-[#00aeef] opacity-0 group-hover:opacity-100 rounded-lg blur transition-opacity duration-500" />
-                  
-                  <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-lg p-6 group-hover:border-[#00aeef]/50 transition-all duration-300 hover:transform hover:scale-[1.02]">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`p-3 rounded-lg bg-gradient-to-r ${category.color} bg-opacity-10 border border-gray-700 group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="h-6 w-6 text-white" />
-                      </div>
-                      <h4 className="text-lg font-normal">{category.title}</h4>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {category.items.map((item, itemIndex) => (
-                        <Badge
-                          key={item}
-                          variant="outline"
-                          className="px-3 py-1.5 text-sm bg-gray-800/50 border-gray-700 hover:bg-gradient-to-r hover:from-[#2d388a] hover:to-[#00aeef] hover:border-transparent transition-all duration-300 cursor-default hover:scale-110 hover:shadow-lg hover:shadow-[#00aeef]/50"
-                          style={{ animationDelay: `${itemIndex * 50}ms` }}
-                        >
-                          {item}
-                        </Badge>
-                      ))}
-                    </div>
+            {/* Education Timeline */}
+            <div className="mt-12 pt-12 border-t border-gray-300 dark:border-gray-800">
+              <h3 className="text-2xl font-light mb-8">Education</h3>
+              <div className="space-y-8">
+                <div>
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="text-lg font-medium">Master of Science in Computer Engineering</h4>
+                    <span className="text-sm text-gray-600 dark:text-gray-500">Expected May 2025</span>
                   </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-500">New York University</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-600 mt-2">
+                    Machine Learning, Artificial Intelligence, Internet Protocols, Network Security
+                  </p>
                 </div>
-              );
-            })}
+                <div>
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="text-lg font-medium">Bachelor of Science in Computer Engineering</h4>
+                    <span className="text-sm text-gray-600 dark:text-gray-500">May 2023</span>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-500">University of Illinois at Chicago</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-600 mt-2">
+                    Data Structures, Computer Vision, Systems Programming, Computer Architecture
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
