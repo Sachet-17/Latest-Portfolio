@@ -77,8 +77,8 @@ const WorksSection = () => {
         <div className={`mb-16 transition-all duration-800 ease-out ${
           headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <h2 className="text-[8vw] md:text-[6vw] font-light mb-8">
-            SELECTED WORKS /
+          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-8">
+            Selected Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="text-sm text-gray-500">(PROJECTS & EXPERIENCE)</div>

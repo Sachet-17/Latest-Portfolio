@@ -55,8 +55,8 @@ const AboutSection = () => {
         <div className={`mb-24 transform transition-all duration-800 ease-out ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
         }`}>
-          <h2 className="text-[8vw] md:text-[6vw] font-light text-[#0F0F0F] mb-8">
-            ABOUT ME /
+          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] mb-8">
+            About Me
           </h2>
         </div>
 
