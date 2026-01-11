@@ -1,60 +1,19 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { education } from '../data/mock';
 
 const EducationSection = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(0); // First item open by default
   const [visibleItems, setVisibleItems] = useState([]);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef(null);
   const itemRefs = useRef([]);
   const sectionRef = useRef(null);
-  const rafRef = useRef(null);
-  const expandedIndexRef = useRef(0);
 
-  // Update ref when state changes
-  useEffect(() => {
-    expandedIndexRef.current = expandedIndex;
-  }, [expandedIndex]);
-
-  // Handle scroll direction and stacking with smooth throttling
-  const handleScroll = useCallback(() => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-    }
-    
-    rafRef.current = requestAnimationFrame(() => {
-      const currentScrollY = window.scrollY;
-      
-      // Find the item closest to the viewport center with smoother detection
-      let closestIndex = expandedIndexRef.current;
-      let closestDistance = Infinity;
-      const viewportCenter = window.innerHeight / 2;
-      
-      itemRefs.current.forEach((ref, index) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          const itemCenter = rect.top + rect.height / 2;
-          const distance = Math.abs(itemCenter - viewportCenter);
-          
-          // Larger threshold for smoother, earlier transitions
-          if (itemCenter > viewportCenter - 400 && itemCenter < viewportCenter + 400) {
-            if (distance < closestDistance) {
-              closestDistance = distance;
-              closestIndex = index;
-            }
-          }
-        }
-      });
-      
-      // Only update if the index actually changed (prevents unnecessary re-renders)
-      if (closestIndex !== expandedIndexRef.current) {
-        setExpandedIndex(closestIndex);
-      }
-      
-      setLastScrollY(currentScrollY);
-    });
-  }, []);
+  // Handle item click to expand/collapse
+  const handleItemClick = (index) => {
+    // Toggle: if clicking the same item, keep it open; otherwise expand the clicked item
+    setExpandedIndex(index);
+  };
 
   useEffect(() => {
     // Header observer
@@ -91,18 +50,11 @@ const EducationSection = () => {
       if (ref) itemsObserver.observe(ref);
     });
 
-    // Scroll listener for smooth stacking
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
       headerObserver.disconnect();
       itemsObserver.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
     };
-  }, [handleScroll]);
+  }, []);
 
   return (
     <section 
@@ -160,16 +112,23 @@ const EducationSection = () => {
                 style={{ transitionDelay: `${index * 50}ms` }}
                 data-testid={`education-item-${index}`}
               >
-                {/* Header Row - Content LEFT, Number RIGHT */}
-                <div className="py-10 md:py-14 grid grid-cols-12 gap-8 md:gap-16 items-start">
-                  {/* LEFT - Content */}
+                <div className="grid grid-cols-12 gap-8 md:gap-16 items-start">
+                  {/* LEFT - Content Column */}
                   <div className="col-span-9 md:col-span-10 order-1">
-                    {/* Institution Name - Main Heading */}
-                    <h3 className={`text-2xl md:text-4xl lg:text-5xl font-bold education-text-transition ${
-                      isExpanded ? 'text-[#F5F1E8]' : 'text-[#555555]'
-                    }`}>
-                      {edu.institution}
-                    </h3>
+                    {/* Header Row - Clickable */}
+                    <button
+                      onClick={() => handleItemClick(index)}
+                      className="w-full text-left group cursor-pointer"
+                    >
+                      <div className="py-10 md:py-14">
+                        {/* Institution Name - Main Heading */}
+                        <h3 className={`text-2xl md:text-4xl lg:text-5xl font-bold education-text-transition ${
+                          isExpanded ? 'text-[#F5F1E8]' : 'text-[#555555]'
+                        } ${!isExpanded ? 'group-hover:text-[#777777]' : ''} transition-all duration-300`}>
+                          {edu.institution}
+                        </h3>
+                      </div>
+                    </button>
 
                     {/* Expanded Content with smooth transition */}
                     <div 
@@ -217,12 +176,12 @@ const EducationSection = () => {
                     </div>
                   </div>
 
-                  {/* RIGHT - Sticky Number */}
+                  {/* RIGHT - Sticky Number Column */}
                   <div className="col-span-3 md:col-span-2 order-2">
-                    <div className="sticky top-32 text-right">
+                    <div className="sticky top-32 text-right py-10 md:py-14">
                       <div className={`text-6xl md:text-7xl lg:text-8xl number-aesthetic education-text-transition ${
                         isExpanded ? 'text-[#C5B99A]' : 'text-[#333333]'
-                      }`}>
+                      } transition-all duration-300`}>
                         {String(index + 1).padStart(2, '0')}
                       </div>
                     </div>
