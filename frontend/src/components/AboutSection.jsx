@@ -201,13 +201,13 @@ const AboutSection = () => {
 
             <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               <p>
-                I am a passionate AI/ML Engineer and Software Developer with expertise in building full-stack applications and intelligent systems using modern technologies.
+                I'm Sachet Ranjan Bisi, a Computer Engineering graduate from NYU with hands-on experience in software development and AI/ML deployment. I've built scalable APIs, optimized backend systems, and deployed intelligent applications across AWS, GCP, and Azure.
               </p>
               <p>
-                Currently pursuing my Master's in Computer Engineering at New York University, I focus on Machine Learning, AI, and backend systems. My experience spans from developing RAG pipelines and deploying deep learning models to optimizing cloud architectures.
+                My work spans from boosting system throughput to building an LLM-powered system that improved accuracy and halved reconciliation time. I'm passionate about designing reliable, impactful systems that blend innovation with real-world impact.
               </p>
               <p>
-                Beyond coding, I thrive in collaborative environments and enjoy tackling challenging problems with creative, data-driven solutions.
+                Outside of work, I'm a tech enthusiast and content consumer who loves following the NBA, diving into anime and immersive TV shows, and solving problems over a good cup of coffee.
               </p>
             </div>
 
