@@ -124,7 +124,7 @@ const Hero = () => {
                 style={{ transitionDelay: '500ms' }}
               >
                 <div className="relative">
-                  <div className="aspect-[4/3] bg-[#E8E4DA] rounded-2xl overflow-hidden group cursor-pointer hover-lift">
+                  <div className="aspect-[4/3] bg-[#E8E4DA] rounded-2xl overflow-hidden group cursor-pointer hover-lift shadow-2xl">
                     <img 
                       src="/images/hero.jpg"
                       alt="Hero"
@@ -137,8 +137,10 @@ const Hero = () => {
                     <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] hover:scale-105 transition-transform duration-700 ease-out items-center justify-center hidden">
                       <span className="text-gray-500 text-lg font-light">[Hero Image]</span>
                     </div>
-                    {/* Gradient overlay for text visibility */}
-                    <div className="absolute inset-0 bg-gradient-to-l from-[#F5F1E8]/80 via-[#F5F1E8]/40 to-transparent pointer-events-none"></div>
+                    {/* Subtle vignette overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                    {/* Soft corner blend */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#F5F1E8]/30 pointer-events-none"></div>
                   </div>
                 </div>
               </div>
