@@ -126,18 +126,11 @@ const Hero = () => {
               >
                 <div className="relative">
                   <div className="aspect-[4/3] bg-[#E8E4DA] dark:bg-[#1A1A1A] rounded-2xl overflow-hidden group cursor-pointer hover-lift">
-                    {!imageError ? (
-                      <img 
-                        src={images.profile}
-                        alt="Sachet Ranjan Bisi"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
-                        onError={() => setImageError(true)}
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] dark:from-[#1A1A1A] dark:via-[#252525] dark:to-[#1A1A1A] hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
-                        <span className="text-gray-500 dark:text-gray-400 text-lg font-light">[Your Profile Photo]</span>
-                      </div>
-                    )}
+                    <img 
+                      src={images.heroImage}
+                      alt="AI Neural Network Visualization"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                    />
                   </div>
                 </div>
               </div>
