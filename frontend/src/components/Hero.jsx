@@ -6,7 +6,6 @@ import { images, files } from '../config/assets';
 const Hero = () => {
   const [showCurtain, setShowCurtain] = useState(true);
   const [animateContent, setAnimateContent] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     // Opening curtain animation sequence
