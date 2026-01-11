@@ -28,11 +28,11 @@ const EducationSection = () => {
   }, []);
 
   return (
-    <section id="education" className="min-h-screen bg-white px-6 lg:px-12 py-24">
+    <section id="education" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 py-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-24">
-          <h2 className="text-[8vw] md:text-[6vw] font-light text-black mb-8">
+          <h2 className="text-[8vw] md:text-[6vw] font-light text-[#0F0F0F] mb-8">
             EDUCATION /
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -49,7 +49,7 @@ const EducationSection = () => {
             <div 
               key={edu.id} 
               ref={el => itemRefs.current[index] = el}
-              className={`border-t border-gray-300 pt-12 transform transition-all duration-1000 ${
+              className={`border-t border-[#D2CEC4] pt-12 transform transition-all duration-1000 ${
                 visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -57,14 +57,14 @@ const EducationSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Number */}
                 <div className="md:col-span-2">
-                  <div className="text-6xl font-light text-gray-400 hover:text-black transition-colors duration-500">
+                  <div className="text-6xl font-light text-gray-400 hover:text-[#0F0F0F] transition-colors duration-500">
                     ({String(index + 1).padStart(2, '0')})
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="md:col-span-10">
-                  <h3 className="text-4xl md:text-5xl font-light text-black mb-4 hover:text-gray-600 transition-colors duration-500">
+                  <h3 className="text-4xl md:text-5xl font-light text-[#0F0F0F] mb-4 hover:text-gray-600 transition-colors duration-500">
                     {edu.degree}
                   </h3>
                   
@@ -83,12 +83,12 @@ const EducationSection = () => {
                       {edu.coursework.map((course, idx) => (
                         <div 
                           key={course}
-                          className="flex items-center gap-4 border-b border-gray-200 pb-3 transform transition-all duration-500 hover:translate-x-2"
+                          className="flex items-center gap-4 border-b border-[#D2CEC4] pb-3 transform transition-all duration-500 hover:translate-x-2"
                         >
                           <span className="text-sm text-gray-500 min-w-[30px]">
                             {String(idx + 1).padStart(2, '0')}
                           </span>
-                          <span className="text-lg text-black">
+                          <span className="text-lg text-[#0F0F0F]">
                             {course}
                           </span>
                         </div>
