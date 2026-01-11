@@ -148,7 +148,7 @@ const MainContent = () => {
                     <a href="https://linkedin.com/in/sachetbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:text-gray-600 hover:translate-x-2 transition-all duration-300">
                       LinkedIn
                     </a>
-                    <a href="https://github.com/Sachet-17" target="_blank" rel="noopener noreferrer" className="block text-sm hover:text-gray-600 hover:translate-x-2 transition-all duration-300">
+                    <a href="http://github.com/Sachet-17" target="_blank" rel="noopener noreferrer" className="block text-sm hover:text-gray-600 hover:translate-x-2 transition-all duration-300">
                       Github
                     </a>
                   </div>
