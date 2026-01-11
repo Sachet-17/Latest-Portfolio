@@ -25,7 +25,7 @@ const Navbar = () => {
     <>
       {/* Fixed Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md' : 'bg-transparent'
+        isScrolled ? 'bg-[#F5F1E8]/80 backdrop-blur-md' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
@@ -43,10 +43,10 @@ const Navbar = () => {
 
       {/* Full Screen Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white animate-menu-slide-in">
+        <div className="fixed inset-0 z-50 bg-[#F5F1E8] animate-menu-slide-in">
           <div className="h-full flex flex-col">
             {/* Menu Header */}
-            <div className="p-6 lg:p-12 flex items-center justify-between border-b border-gray-200">
+            <div className="p-6 lg:p-12 flex items-center justify-between border-b border-[#D2CEC4]">
               <div className="text-sm text-gray-600">Menu</div>
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -99,7 +99,7 @@ const Navbar = () => {
             </div>
 
             {/* Menu Footer */}
-            <div className="p-6 lg:p-12 border-t border-gray-200">
+            <div className="p-6 lg:p-12 border-t border-[#D2CEC4]">
               <div className="flex justify-between items-end">
                 <div>
                   <h3 className="text-sm text-gray-600 mb-4">Socials</h3>

@@ -34,7 +34,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-black text-white px-6 lg:px-12 py-24">
+    <section id="contact" className="bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {/* Left - Contact Info */}
@@ -51,7 +51,7 @@ const Contact = () => {
                 <Mail className="w-5 h-5 mt-1 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Email</p>
-                  <a href={`mailto:${personalInfo.email}`} className="text-white hover:text-gray-300 transition-colors">
+                  <a href={`mailto:${personalInfo.email}`} className="text-[#F5F1E8] hover:text-gray-300 transition-colors">
                     {personalInfo.email}
                   </a>
                 </div>
@@ -61,7 +61,7 @@ const Contact = () => {
                 <Phone className="w-5 h-5 mt-1 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Phone</p>
-                  <a href={`tel:${personalInfo.phone}`} className="text-white hover:text-gray-300 transition-colors">
+                  <a href={`tel:${personalInfo.phone}`} className="text-[#F5F1E8] hover:text-gray-300 transition-colors">
                     {personalInfo.phone}
                   </a>
                 </div>
@@ -71,7 +71,7 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 mt-1 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Location</p>
-                  <p className="text-white">{personalInfo.location}</p>
+                  <p className="text-[#F5F1E8]">{personalInfo.location}</p>
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@ const Contact = () => {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border border-gray-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                  className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -91,7 +91,7 @@ const Contact = () => {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border border-gray-700 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                  className="p-3 border border-gray-700 rounded-full hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300"
                 >
                   <Github className="w-5 h-5" />
                 </a>
@@ -108,7 +108,7 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your name"
                 required
-                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-white placeholder:text-gray-600 focus:border-white transition-all duration-300"
+                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 focus:border-[#F5F1E8] transition-all duration-300"
               />
               <Input
                 name="email"
@@ -117,7 +117,7 @@ const Contact = () => {
                 onChange={handleChange}
                 placeholder="Your email"
                 required
-                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-white placeholder:text-gray-600 focus:border-white transition-all duration-300"
+                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 focus:border-[#F5F1E8] transition-all duration-300"
               />
               <Textarea
                 name="message"
@@ -126,12 +126,12 @@ const Contact = () => {
                 placeholder="Your message"
                 required
                 rows={6}
-                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-white placeholder:text-gray-600 resize-none focus:border-white transition-all duration-300"
+                className="bg-transparent border-b border-gray-700 rounded-none px-0 py-4 text-[#F5F1E8] placeholder:text-gray-600 resize-none focus:border-[#F5F1E8] transition-all duration-300"
               />
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-white text-black hover:bg-gray-200 py-6 rounded-full font-normal group transition-all duration-300 hover:scale-105"
+                className="w-full bg-[#F5F1E8] text-[#0F0F0F] hover:bg-[#E8E4DA] py-6 rounded-full font-normal group transition-all duration-300 hover:scale-105"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
