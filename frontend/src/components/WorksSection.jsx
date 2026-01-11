@@ -106,10 +106,10 @@ const WorksSection = () => {
         </div>
 
         {/* Floating Tabs - Only visible in Works section */}
-        <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        <div className={`fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] transition-all duration-500 ${
           showFloatingTabs ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}>
-          <div className="bg-[#1A1A1A]/90 backdrop-blur-md rounded-full p-1.5 border border-gray-800/50 shadow-2xl flex gap-1">
+          <div className="bg-[#1A1A1A]/95 backdrop-blur-md rounded-full p-2 border border-gray-700 shadow-2xl flex gap-2">
             <button
               onClick={() => handleTabChange('projects')}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
