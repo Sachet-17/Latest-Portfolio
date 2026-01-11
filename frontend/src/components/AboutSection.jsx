@@ -84,7 +84,9 @@ const AboutSection = () => {
           </div>
 
           {/* Right - Skills Grid */}
-          <div className="grid grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-sm text-gray-500 uppercase tracking-widest mb-8">(Skills)</h3>
+            <div className="grid grid-cols-3 gap-8">
             {/* Languages & Tools */}
             <div>
               <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-6 pb-3 border-b border-[#D2CEC4]">
