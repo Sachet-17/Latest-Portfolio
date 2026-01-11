@@ -15,7 +15,6 @@ const WorksSection = () => {
   // Scroll to first item when tab changes
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    // Scroll to top of works section
     setTimeout(() => {
       const worksSection = document.querySelector('#works');
       if (worksSection) {
@@ -25,13 +24,11 @@ const WorksSection = () => {
   };
 
   useEffect(() => {
-    // Reset when tab changes
     setActiveIndex(0);
     itemRefs.current = [];
   }, [activeTab]);
 
   useEffect(() => {
-    // Header observer
     const headerObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -45,13 +42,14 @@ const WorksSection = () => {
       headerObserver.observe(headerRef.current);
     }
 
-    // Scroll handler for floating tabs and active item
+    // Simple scroll-based check for floating tabs
     const handleScroll = () => {
-      // Show floating tabs when in works section
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        setShowFloatingTabs(isInView);
+      const section = document.getElementById('works');
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        // Show tabs when any part of works section is visible
+        const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 100;
+        setShowFloatingTabs(isVisible);
       }
 
       // Update active item
@@ -67,8 +65,8 @@ const WorksSection = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check with delay to ensure refs are set
-    setTimeout(handleScroll, 100);
+    // Run initial check
+    handleScroll();
 
     return () => {
       headerObserver.disconnect();
@@ -83,7 +81,6 @@ const WorksSection = () => {
       className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-16 py-32" 
       data-testid="works-section"
     >
-      {/* Google Font for numbers */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
         .number-aesthetic {
@@ -105,37 +102,7 @@ const WorksSection = () => {
           </h2>
         </div>
 
-        {/* Floating Tabs - Only visible in Works section */}
-        {showFloatingTabs && (
-          <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60]">
-            <div className="bg-[#1A1A1A]/95 backdrop-blur-md rounded-full p-2 border border-gray-700 shadow-2xl flex gap-2">
-              <button
-                onClick={() => handleTabChange('projects')}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'projects' 
-                    ? 'bg-[#C5B99A] text-[#0F0F0F]' 
-                    : 'text-gray-400 hover:text-[#F5F1E8]'
-                }`}
-                data-testid="projects-tab"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => handleTabChange('experience')}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'experience' 
-                    ? 'bg-[#C5B99A] text-[#0F0F0F]' 
-                    : 'text-gray-400 hover:text-[#F5F1E8]'
-                }`}
-                data-testid="experience-tab"
-              >
-                Experience
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Works Items - Content LEFT, Number RIGHT */}
+        {/* Works Items */}
         <div className="relative">
           {currentWorks.map((work, index) => (
             <div 
@@ -147,17 +114,14 @@ const WorksSection = () => {
               <div className="grid grid-cols-12 gap-8 md:gap-16 h-full">
                 {/* LEFT - Content */}
                 <div className="col-span-9 md:col-span-10 space-y-10 order-1">
-                  {/* Label */}
                   <div className="text-sm text-gray-500 uppercase tracking-widest">
                     {activeTab === 'projects' ? '(Project)' : '(Experience)'}
                   </div>
 
-                  {/* Title */}
                   <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F5F1E8] leading-tight">
                     {work.title || work.role}
                   </h3>
 
-                  {/* Subtitle/Company */}
                   <div className="text-lg text-gray-400">
                     {activeTab === 'projects' 
                       ? work.date 
@@ -165,18 +129,16 @@ const WorksSection = () => {
                     }
                   </div>
 
-                  {/* Description */}
                   <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl font-light">
                     {work.longDescription || work.description}
                   </p>
 
-                  {/* Impact Metrics - Highlighted */}
+                  {/* Impact Metrics */}
                   {work.achievements && work.achievements.length > 0 && (
                     <div className="space-y-8 mt-16">
                       <h4 className="text-sm text-gray-500 uppercase tracking-widest">Impact</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {work.achievements.map((achievement, idx) => {
-                          // Extract percentage or number from achievement
                           const match = achievement.match(/(\d+%?)/);
                           const highlight = match ? match[1] : null;
                           const text = highlight 
@@ -232,6 +194,40 @@ const WorksSection = () => {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Floating Tabs - Fixed at bottom center */}
+      <div 
+        className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100] transition-all duration-500 ease-out ${
+          showFloatingTabs 
+            ? 'opacity-100 translate-y-0 pointer-events-auto' 
+            : 'opacity-0 translate-y-8 pointer-events-none'
+        }`}
+      >
+        <div className="bg-[#1A1A1A]/95 backdrop-blur-xl rounded-full px-2 py-2 border border-gray-700/50 shadow-2xl flex gap-1">
+          <button
+            onClick={() => handleTabChange('projects')}
+            className={`px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+              activeTab === 'projects' 
+                ? 'bg-[#C5B99A] text-[#0F0F0F] shadow-lg' 
+                : 'text-gray-400 hover:text-[#F5F1E8] hover:bg-white/5'
+            }`}
+            data-testid="projects-tab"
+          >
+            Projects
+          </button>
+          <button
+            onClick={() => handleTabChange('experience')}
+            className={`px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+              activeTab === 'experience' 
+                ? 'bg-[#C5B99A] text-[#0F0F0F] shadow-lg' 
+                : 'text-gray-400 hover:text-[#F5F1E8] hover:bg-white/5'
+            }`}
+            data-testid="experience-tab"
+          >
+            Experience
+          </button>
         </div>
       </div>
     </section>
