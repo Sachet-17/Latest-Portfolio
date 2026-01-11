@@ -3,23 +3,17 @@ import { projects, experience } from '../data/mock';
 
 const WorksSection = () => {
   const [activeTab, setActiveTab] = useState('projects');
-  const [visibleItems, setVisibleItems] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
-  const [tabAnimating, setTabAnimating] = useState(false);
-  const itemRefs = useRef([]);
   const sectionRef = useRef(null);
+  const itemRefs = useRef([]);
 
-  // Reset visible items when tab changes with animation
+  const currentWorks = activeTab === 'projects' ? projects : experience;
+
   useEffect(() => {
-    setTabAnimating(true);
-    setVisibleItems([]);
+    // Reset when tab changes
+    setActiveIndex(0);
     itemRefs.current = [];
-    
-    const timer = setTimeout(() => {
-      setTabAnimating(false);
-    }, 100);
-
-    return () => clearTimeout(timer);
   }, [activeTab]);
 
   useEffect(() => {
@@ -37,153 +31,165 @@ const WorksSection = () => {
       headerObserver.observe(sectionRef.current);
     }
 
-    // Items observer
-    const itemsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = itemRefs.current.indexOf(entry.target);
-            if (index !== -1 && !visibleItems.includes(index)) {
-              setTimeout(() => {
-                setVisibleItems(prev => [...prev, index]);
-              }, index * 120);
-            }
+    // Scroll handler for active item
+    const handleScroll = () => {
+      itemRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          const viewportCenter = window.innerHeight / 2;
+          if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
+            setActiveIndex(index);
           }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    // Small delay to allow refs to be set after tab change
-    const setupTimer = setTimeout(() => {
-      itemRefs.current.forEach((ref) => {
-        if (ref) itemsObserver.observe(ref);
+        }
       });
-    }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      clearTimeout(setupTimer);
       headerObserver.disconnect();
-      itemsObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [activeTab, visibleItems]);
-
-  const currentWorks = activeTab === 'projects' ? projects : experience;
+  }, [activeTab]);
 
   return (
-    <section id="works" className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24" ref={sectionRef} data-testid="works-section">
+    <section 
+      id="works" 
+      ref={sectionRef}
+      className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24" 
+      data-testid="works-section"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className={`mb-16 transition-all duration-800 ease-out ${
+        <div className={`mb-16 transition-all duration-1000 ease-out ${
           headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-8">
+          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-12">
             Selected Works
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="text-sm text-gray-500">(PROJECTS & EXPERIENCE)</div>
-            <div className="text-lg text-gray-300 leading-relaxed">
-              A collection of projects and professional experience showcasing technical solutions and real-world impact.
-            </div>
+          
+          {/* Tabs */}
+          <div className="flex gap-8 border-b border-gray-800 pb-4">
+            <button
+              onClick={() => setActiveTab('projects')}
+              className={`text-lg md:text-xl font-light pb-2 transition-all duration-400 relative ${
+                activeTab === 'projects' ? 'text-[#F5F1E8]' : 'text-gray-600 hover:text-gray-400'
+              }`}
+              data-testid="projects-tab"
+            >
+              (PROJECTS)
+              <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#C5B99A] transition-transform duration-400 origin-left ${
+                activeTab === 'projects' ? 'scale-x-100' : 'scale-x-0'
+              }`} />
+            </button>
+            <button
+              onClick={() => setActiveTab('experience')}
+              className={`text-lg md:text-xl font-light pb-2 transition-all duration-400 relative ${
+                activeTab === 'experience' ? 'text-[#F5F1E8]' : 'text-gray-600 hover:text-gray-400'
+              }`}
+              data-testid="experience-tab"
+            >
+              (EXPERIENCE)
+              <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#C5B99A] transition-transform duration-400 origin-left ${
+                activeTab === 'experience' ? 'scale-x-100' : 'scale-x-0'
+              }`} />
+            </button>
           </div>
         </div>
 
-        {/* Tabs - Improved animations */}
-        <div className={`flex gap-8 border-b border-gray-800 pb-4 mb-16 transition-all duration-800 ease-out ${
-          headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`} style={{ transitionDelay: '200ms' }}>
-          <button
-            onClick={() => setActiveTab('projects')}
-            className={`text-2xl font-light pb-2 transition-all duration-400 relative ${
-              activeTab === 'projects'
-                ? 'text-[#F5F1E8]'
-                : 'text-gray-600 hover:text-gray-400'
-            }`}
-            data-testid="projects-tab"
-          >
-            Projects
-            <div 
-              className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#E8E4DA] transition-transform duration-400 origin-left ${
-                activeTab === 'projects' ? 'scale-x-100' : 'scale-x-0'
-              }`} 
-            />
-          </button>
-          <button
-            onClick={() => setActiveTab('experience')}
-            className={`text-2xl font-light pb-2 transition-all duration-400 relative ${
-              activeTab === 'experience'
-                ? 'text-[#F5F1E8]'
-                : 'text-gray-600 hover:text-gray-400'
-            }`}
-            data-testid="experience-tab"
-          >
-            Experience
-            <div 
-              className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[#E8E4DA] transition-transform duration-400 origin-left ${
-                activeTab === 'experience' ? 'scale-x-100' : 'scale-x-0'
-              }`} 
-            />
-          </button>
-        </div>
-
-        {/* Works Grid - Pure informational, no images */}
-        <div className={`space-y-24 transition-opacity duration-300 ${tabAnimating ? 'opacity-0' : 'opacity-100'}`}>
+        {/* Works Items */}
+        <div className="relative">
           {currentWorks.map((work, index) => (
             <div 
-              key={`${activeTab}-${work.id}`} 
+              key={`${activeTab}-${work.id}`}
               ref={el => itemRefs.current[index] = el}
-              className={`transform transition-all duration-700 ease-out ${
-                visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
-              }`}
+              className="min-h-[80vh] py-16 border-t border-gray-800"
               data-testid={`${activeTab}-item-${index}`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                {/* Number - BEIGE colored, restarts for each tab */}
-                <div className="md:col-span-2">
-                  <div className="text-7xl md:text-8xl font-light text-[#C5B99A] hover:text-[#E8E4DA] transition-colors duration-400">
-                    {String(index + 1).padStart(2, '0')}
+              <div className="grid grid-cols-12 gap-8 h-full">
+                {/* Left - Sticky Number */}
+                <div className="col-span-3 md:col-span-2">
+                  <div className="sticky top-32">
+                    <div className={`text-[15vw] md:text-[12vw] lg:text-[10vw] font-light leading-none transition-all duration-700 ${
+                      activeIndex === index ? 'text-[#C5B99A]' : 'text-[#333333]'
+                    }`}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                   </div>
                 </div>
 
-                {/* Content - Informational only */}
-                <div className="md:col-span-10 space-y-5">
-                  {/* Title and Info */}
-                  <div>
-                    <h3 className="text-3xl md:text-4xl font-light mb-2 hover:text-gray-400 transition-colors duration-400">
-                      {work.title || work.role}
-                    </h3>
-                    <div className="text-sm text-gray-500">
-                      {activeTab === 'projects' ? work.date : `${work.company} • ${work.period}`}
-                    </div>
+                {/* Right - Content */}
+                <div className="col-span-9 md:col-span-10 space-y-8">
+                  {/* Label */}
+                  <div className="text-sm text-gray-500 uppercase tracking-wider">
+                    {activeTab === 'projects' ? '(Project)' : '(Experience)'}
                   </div>
 
-                  <p className="text-gray-400 leading-relaxed max-w-3xl">
+                  {/* Title */}
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F5F1E8] leading-tight">
+                    {work.title || work.role}
+                  </h3>
+
+                  {/* Subtitle/Company */}
+                  <div className="text-lg text-gray-400">
+                    {activeTab === 'projects' 
+                      ? work.date 
+                      : `${work.company} • ${work.period}`
+                    }
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl font-light">
                     {work.longDescription || work.description}
                   </p>
 
-                  {/* Technologies/Stack */}
-                  <div className="flex flex-wrap gap-2">
-                    {work.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-4 py-2 text-sm border border-gray-700 rounded-full text-gray-400 hover:bg-[#F5F1E8] hover:text-[#0F0F0F] hover:border-[#F5F1E8] transition-all duration-300 cursor-default"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Achievements */}
+                  {/* Impact Metrics - Highlighted */}
                   {work.achievements && work.achievements.length > 0 && (
-                    <div className="space-y-2 mt-4 pt-4 border-t border-gray-800">
-                      {work.achievements.map((achievement, idx) => (
-                        <div key={idx} className="flex items-start gap-3 text-sm text-gray-400 hover:text-[#F5F1E8] hover:translate-x-2 transition-all duration-300">
-                          <span className="text-[#C5B99A] mt-0.5">→</span>
-                          <span>{achievement}</span>
-                        </div>
-                      ))}
+                    <div className="space-y-6 mt-12">
+                      <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-6">Impact</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {work.achievements.map((achievement, idx) => {
+                          // Extract percentage or number from achievement
+                          const match = achievement.match(/(\d+%?)/);
+                          const highlight = match ? match[1] : null;
+                          const text = highlight 
+                            ? achievement.replace(highlight, '').trim()
+                            : achievement;
+
+                          return (
+                            <div 
+                              key={idx}
+                              className="bg-[#1A1A1A] rounded-lg p-6 border border-gray-800 hover:border-[#C5B99A] transition-all duration-300 group"
+                            >
+                              {highlight && (
+                                <div className="text-4xl md:text-5xl font-bold text-[#C5B99A] mb-3 group-hover:scale-105 transition-transform duration-300">
+                                  {highlight}
+                                </div>
+                              )}
+                              <p className="text-gray-400 text-sm leading-relaxed">
+                                {text.replace(/^(Improved|Reduced|Achieved|Cut|Enhanced|Secured)/i, '').trim()}
+                              </p>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
+
+                  {/* Technologies */}
+                  <div className="pt-8">
+                    <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-4">Technologies</h4>
+                    <div className="flex flex-wrap gap-3">
+                      {work.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 text-sm border border-gray-700 rounded-full text-gray-400 hover:bg-[#C5B99A] hover:text-[#0F0F0F] hover:border-[#C5B99A] transition-all duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
