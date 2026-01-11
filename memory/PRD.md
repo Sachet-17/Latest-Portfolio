@@ -1,84 +1,89 @@
-# Portfolio Website - Sachet Ranjan Bisi
+# Sachet Ranjan Bisi - Portfolio Website
 
 ## Original Problem Statement
-Build a professional portfolio website for an AI/ML Engineer and Software Development Engineer. The content is sourced from the user's resume (Sachet_Bisi_Resume.pdf).
+Build a professional portfolio website for an AI/ML Engineer and Software Development Engineer. The content is sourced from the user's resume, featuring a highly-customized, single-page scrolling application inspired by zunedaalim.com with a unique beige and soft-black color scheme.
 
-## Design Requirements (Final)
-- **Layout:** Single, continuous-scrolling page inspired by zunedaalim.com
-- **Color Scheme:** Warm beige (#F5F1E8) background for light sections, soft black (#0F0F0F) for dark sections
-- **Typography:** Large, bold headings with light font weights
+## Product Requirements
 
-## Sections
-1. **Hero:** Opening animation with "SRB" initials on dark curtain, name reveal animation, profile photo placeholder
-2. **Education:** "Where I studied" (large bold heading), scroll-based stacking accordion - items collapse showing only institution name, expand on scroll to show degree, location, dates, and numbered coursework. 4 entries: NYU, UIC, Indus International School, Seven Hills
-3. **Works:** "Selected Works" (large bold heading), tabbed (PROJECTS)/(EXPERIENCE), sticky large number on left, content on right with impact metrics highlighted in 2-column cards with beige percentage numbers
-4. **About:** "About Me" (large bold heading), bio, photo placeholder, skills marquee, technical skills grid
-5. **Contact:** Form on dark background with social links
+### Layout & Design
+- **Layout:** Single, continuous-scrolling page
+- **Color Scheme:** Warm beige (`#F5F1E8`) background for light sections, soft black (`#0F0F0F`) for dark sections
+- **Typography:** Large, bold headings; Playfair Display serif font for numbers
 
-## Animations Implemented
-- Opening curtain reveal animation with "SRB" logo
-- Staggered text reveal for hero name
-- Stacking scroll animation for education items
-- Tab switching with underline animation in Works
-- Fade-in transitions for all sections
-- Hover effects throughout (lift, translate, color changes)
-- Smooth scroll navigation
+### Sections
+1. **Navbar:** Hamburger menu with full-screen overlay; typing animation cycling through roles
+2. **Hero Section:** Large name title, subtitle, hero image (code/coffee theme), CONTACT and RESUME buttons, ASAP'26 availability badge
+3. **Education Section:** Scroll-triggered stacking accordion with unique descriptions per institution
+4. **Works Section:** Split into Projects/Experience with floating pill-style tab switcher
+5. **About Section:** Skills grid, marquee animation, profile picture with bio
+6. **Contact Section:** Styled form on dark background
 
-## Technical Stack
-- **Frontend:** React, TailwindCSS, CSS3 animations
-- **Backend:** FastAPI (placeholder - not implemented)
-- **Database:** MongoDB (planned for contact form)
+### Assets
+- `hero.jpg` - Code/coffee themed image in hero section
+- `profile.jpg` / `profile-about.jpg` - Professional photo in About section
+- `resume.pdf` - Linked to Resume button
 
 ## What's Been Implemented
-- [x] Single-page React portfolio with continuous scroll
-- [x] Beige/soft black color scheme
-- [x] Opening animation with curtain reveal
-- [x] Hero section with name animation
-- [x] Education section with stacking items
-- [x] Works section with Projects/Experience tabs
-- [x] About section with skills
-- [x] Contact form (frontend only - MOCKED)
-- [x] Responsive design
-- [x] Smooth scroll navigation
 
-## What's MOCKED
-- Contact form submission (shows toast but doesn't save data)
-- All content from mock.js file (no backend data)
+### Completed Features (December 2024 - January 2025)
+- ✅ Full single-page portfolio with beige/soft-black color scheme
+- ✅ Opening "SRB" curtain reveal animation
+- ✅ Navbar with typing animation (AI Engineer, ML Engineer, etc.)
+- ✅ Hero section with code/coffee image, subtle shadow and vignette overlay
+- ✅ Education section with scroll-based stacking accordion and unique descriptions
+- ✅ Works section with floating pill tab switcher (React Portal)
+- ✅ About section with skills grid, marquee, and profile photo
+- ✅ Contact form (UI only - backend not implemented)
+- ✅ Scroll progress indicator
+- ✅ Back to top button
+- ✅ Custom cursor
+- ✅ Asset management system (`/frontend/src/config/assets.js`)
 
-## Pending Tasks
+### Content Updates (Latest)
+- ✅ Hero message: "Open to job opportunities worldwide. Passionate about building polished, reliable, scalable systems and clean UIs."
+- ✅ About Me bio updated with NYU graduate info, cloud platforms, LLM work, and personal interests
+- ✅ Education descriptions customized for each institution (NYU, UIC, Indus, Seven Hills)
+- ✅ Hero image gradient refined with subtle vignette and shadow
 
-### P0 - Image Integration
-- User needs to provide profile photo for Hero/About sections
-- Project images (optional - currently removed per user request)
+## Architecture
 
-### P1 - Backend Contact Form
-- Create `/api/contact` endpoint in FastAPI
-- Save form submissions to MongoDB
-- Connect frontend form to backend API
-
-## File Structure
 ```
 /app
-├── backend
-│   ├── .env
-│   ├── requirements.txt
-│   └── server.py
-└── frontend
-    ├── src
-    │   ├── components
-    │   │   ├── Hero.jsx (opening animation, name reveal)
-    │   │   ├── EducationSection.jsx (stacking animation)
-    │   │   ├── WorksSection.jsx (tabbed Projects/Experience)
-    │   │   ├── AboutSection.jsx (bio, skills)
-    │   │   ├── Contact.jsx (form)
-    │   │   ├── Navbar.jsx (menu)
-    │   │   └── Footer.jsx
-    │   ├── data
-    │   │   └── mock.js (all portfolio content)
-    │   ├── App.css (animations, styles)
+├── backend/
+│   ├── server.py (FastAPI - minimal)
+│   └── .env
+└── frontend/
+    ├── public/
+    │   ├── images/ (hero.jpg, profile.jpg, profile-about.jpg)
+    │   └── files/ (resume.pdf)
+    ├── src/
+    │   ├── components/
+    │   │   ├── Hero.jsx
+    │   │   ├── Navbar.jsx
+    │   │   ├── EducationSection.jsx
+    │   │   ├── WorksSection.jsx
+    │   │   ├── FloatingTabs.jsx (React Portal)
+    │   │   ├── AboutSection.jsx
+    │   │   ├── Contact.jsx
+    │   │   └── ...
+    │   ├── config/assets.js
+    │   ├── data/mock.js
     │   └── App.js
-    └── package.json
+    └── tailwind.config.js
 ```
 
-## Last Updated
-January 2025 - Implemented all animation refinements as per user request
+## Backlog
+
+### P1 - Next Up
+- [ ] Implement backend for Contact Form (POST /api/contact to MongoDB)
+- [ ] Create comprehensive README.md
+
+### P2 - Future
+- [ ] Delete unused files (ThemeContext.jsx, ThemeToggle.jsx)
+- [ ] Monitor floating tabs stability
+
+## Technical Notes
+- Frontend: React, TailwindCSS, react-intersection-observer
+- Backend: FastAPI (planned for contact form)
+- Database: MongoDB (planned)
+- Floating tabs use React Portal to avoid z-index issues
