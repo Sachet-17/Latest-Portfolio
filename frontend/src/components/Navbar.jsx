@@ -70,13 +70,13 @@ const Navbar = () => {
       <nav 
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           showNav ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-        } ${isScrolled ? 'bg-[#F5F1E8]/90 backdrop-blur-md' : 'bg-transparent'}`}
+        } ${isScrolled ? 'bg-[#F5F1E8]/90 dark:bg-[#0A0A0A]/90 backdrop-blur-md' : 'bg-transparent'}`}
         data-testid="navbar"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <div 
-              className="text-sm font-medium cursor-pointer hover:opacity-70 transition-opacity duration-300 flex items-center"
+              className="text-sm font-medium cursor-pointer hover:opacity-70 transition-opacity duration-300 flex items-center text-[#0F0F0F] dark:text-[#F5F1E8]"
               onClick={() => scrollToSection('#hero')}
             >
               <span className="min-w-[200px]">
@@ -86,7 +86,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="p-2 hover:opacity-60 transition-all duration-300"
+              className="p-2 hover:opacity-60 transition-all duration-300 text-[#0F0F0F] dark:text-[#F5F1E8]"
               aria-label="Open menu"
               data-testid="menu-button"
             >
