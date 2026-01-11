@@ -153,7 +153,7 @@ const EducationSection = () => {
 
                         {/* Description */}
                         <p className="text-gray-400 leading-relaxed mb-10 max-w-2xl text-lg">
-                          Building a strong foundation in computer science principles, from algorithms and data structures to systems design and AI/ML applications.
+                          {edu.description}
                         </p>
 
                         {/* Coursework in 2-column grid */}
