@@ -106,34 +106,34 @@ const WorksSection = () => {
         </div>
 
         {/* Floating Tabs - Only visible in Works section */}
-        <div className={`fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] transition-all duration-500 ${
-          showFloatingTabs ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}>
-          <div className="bg-[#1A1A1A]/95 backdrop-blur-md rounded-full p-2 border border-gray-700 shadow-2xl flex gap-2">
-            <button
-              onClick={() => handleTabChange('projects')}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === 'projects' 
-                  ? 'bg-[#C5B99A] text-[#0F0F0F]' 
-                  : 'text-gray-400 hover:text-[#F5F1E8]'
-              }`}
-              data-testid="projects-tab"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => handleTabChange('experience')}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === 'experience' 
-                  ? 'bg-[#C5B99A] text-[#0F0F0F]' 
-                  : 'text-gray-400 hover:text-[#F5F1E8]'
-              }`}
-              data-testid="experience-tab"
-            >
-              Experience
-            </button>
+        {showFloatingTabs && (
+          <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60]">
+            <div className="bg-[#1A1A1A]/95 backdrop-blur-md rounded-full p-2 border border-gray-700 shadow-2xl flex gap-2">
+              <button
+                onClick={() => handleTabChange('projects')}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeTab === 'projects' 
+                    ? 'bg-[#C5B99A] text-[#0F0F0F]' 
+                    : 'text-gray-400 hover:text-[#F5F1E8]'
+                }`}
+                data-testid="projects-tab"
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => handleTabChange('experience')}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeTab === 'experience' 
+                    ? 'bg-[#C5B99A] text-[#0F0F0F]' 
+                    : 'text-gray-400 hover:text-[#F5F1E8]'
+                }`}
+                data-testid="experience-tab"
+              >
+                Experience
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Works Items - Content LEFT, Number RIGHT */}
         <div className="relative">
