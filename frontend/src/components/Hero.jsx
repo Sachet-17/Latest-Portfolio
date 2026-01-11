@@ -124,12 +124,19 @@ const Hero = () => {
                 style={{ transitionDelay: '500ms' }}
               >
                 <div className="relative">
-                  <div className="aspect-[4/3] bg-[#E8E4DA] dark:bg-[#1A1A1A] rounded-2xl overflow-hidden group cursor-pointer hover-lift">
+                  <div className="aspect-[4/3] bg-[#E8E4DA] rounded-2xl overflow-hidden group cursor-pointer hover-lift">
                     <img 
-                      src={images.heroImage}
-                      alt="AI Neural Network Visualization"
+                      src="/images/hero.jpg"
+                      alt="Hero"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
                     />
+                    <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] hover:scale-105 transition-transform duration-700 ease-out items-center justify-center hidden">
+                      <span className="text-gray-500 text-lg font-light">[Hero Image]</span>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -23,9 +23,9 @@
 // Image paths
 export const images = {
   profile: '/images/profile.jpg',
-  profileAbout: '/images/profile-about.jpg', // Optional: different photo for about section
-  heroImage: 'https://static.prod-images.emergentagent.com/jobs/d3affe26-89f0-47d3-bcc7-7db438d77ea6/images/2cb8049cae8b544692ca0e184b4e3413e2e1e1e2e5d3474534e8246e2b3a72d4.png',
-  placeholder: null, // Will show placeholder if image doesn't exist
+  profileAbout: '/images/profile-about.jpg',
+  heroImage: '/images/hero.jpg',
+  placeholder: null,
 };
 
 // File paths
