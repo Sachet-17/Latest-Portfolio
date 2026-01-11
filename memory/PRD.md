@@ -10,7 +10,7 @@ Build a professional portfolio website for an AI/ML Engineer and Software Develo
 
 ## Sections
 1. **Hero:** Opening animation with "SRB" initials on dark curtain, name reveal animation, profile photo placeholder
-2. **Education:** Stacking animation for education items (not heading), beige numbers
+2. **Education:** "Where I studied" heading (same font as hero name), accordion-style stacking where items collapse to show only degree name, last item stays open, dark background
 3. **Works:** Tabbed interface (Projects/Experience), separate numbering per tab, beige numbers, informational only (no images)
 4. **About:** Bio, photo placeholder, skills marquee, technical skills grid
 5. **Contact:** Form on dark background with social links

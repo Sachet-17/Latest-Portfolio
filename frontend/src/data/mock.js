@@ -23,21 +23,43 @@ export const personalInfo = {
 export const education = [
   {
     id: 1,
+    shortTitle: "NYU",
     degree: "Master of Science in Computer Engineering",
     institution: "New York University",
-    location: "New York City, NY",
-    period: "Expected May 2025",
+    location: "New York, NY",
+    period: "Sep 2023 – May 2025",
     gpa: "",
     coursework: ["Machine Learning", "Artificial Intelligence", "Internet Protocols", "Network Security"]
   },
   {
     id: 2,
+    shortTitle: "UIC",
     degree: "Bachelor of Science in Computer Engineering",
     institution: "University of Illinois at Chicago",
     location: "Chicago, IL",
-    period: "May 2023",
+    period: "Aug 2019 – May 2023",
     gpa: "",
     coursework: ["Data Structures", "Computer Vision", "Systems Programming", "Computer Architecture"]
+  },
+  {
+    id: 3,
+    shortTitle: "Indus",
+    degree: "IBDP & IGCSE (Grade 9–12)",
+    institution: "Indus International School",
+    location: "Hyderabad, India",
+    period: "Aug 2015 – May 2019",
+    gpa: "",
+    coursework: ["Computer Science HL", "Business HL", "Maths HL", "Physics SL", "English SL", "Hindi SL"]
+  },
+  {
+    id: 4,
+    shortTitle: "Seven Hills",
+    degree: "CBSE (Grade 1–8)",
+    institution: "Seven Hills Residential School",
+    location: "India",
+    period: "Until May 2015",
+    gpa: "",
+    coursework: ["General Curriculum"]
   }
 ];
 
