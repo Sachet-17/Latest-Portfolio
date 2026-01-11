@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 
 const Footer = () => {
@@ -10,54 +10,66 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-12 px-6 lg:px-12 border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-6xl mx-auto">
+    <footer className="py-12 px-6 lg:px-12 border-t border-gray-800 bg-black relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: Name/Logo */}
-          <div>
+          <div className="text-center md:text-left">
             <button
               onClick={scrollToTop}
-              className="text-xl font-light tracking-tight hover:opacity-70 transition-opacity"
+              className="text-xl font-light tracking-tight hover:opacity-70 transition-all duration-300 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:scale-105 transform inline-block"
             >
               {personalInfo.name}
             </button>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+            <p className="text-sm text-gray-500 mt-1">
               {personalInfo.title}
             </p>
           </div>
 
           {/* Center: Social Links */}
-          <div className="flex gap-6">
+          <div className="flex gap-4">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+              className="p-3 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
               aria-label="GitHub"
             >
-              <Github className="h-5 w-5" />
+              <Github className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
             </a>
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+              className="p-3 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-5 w-5" />
+              <Linkedin className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+              className="p-3 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
               aria-label="Email"
             >
-              <Mail className="h-5 w-5" />
+              <Mail className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
             </a>
           </div>
 
-          {/* Right: Copyright */}
-          <div className="text-sm text-gray-500 dark:text-gray-500">
-            © {currentYear} {personalInfo.name.split(' ')[0]}. All rights reserved.
+          {/* Right: Copyright & Scroll to Top */}
+          <div className="flex items-center gap-4">
+            <div className="text-sm text-gray-500">
+              © {currentYear} All rights reserved.
+            </div>
+            <button
+              onClick={scrollToTop}
+              className="p-2 border border-gray-800 rounded-lg hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 group"
+              aria-label="Scroll to top"
+            >
+              <ArrowUp className="h-4 w-4 group-hover:text-purple-400 transition-colors" />
+            </button>
           </div>
         </div>
       </div>
