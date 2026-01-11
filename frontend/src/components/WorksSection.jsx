@@ -199,34 +199,36 @@ const WorksSection = () => {
       </div>
 
       {/* Floating Tabs - Fixed at bottom center */}
-      {showFloatingTabs && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100]">
-          <div className="bg-[#1A1A1A]/95 backdrop-blur-xl rounded-full px-2 py-2 border border-gray-700/50 shadow-2xl flex gap-1">
-            <button
-              onClick={() => handleTabChange('projects')}
-              className={`px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === 'projects' 
-                  ? 'bg-[#C5B99A] text-[#0F0F0F] shadow-lg' 
-                  : 'text-gray-400 hover:text-[#F5F1E8] hover:bg-white/5'
-              }`}
-              data-testid="projects-tab"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => handleTabChange('experience')}
-              className={`px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === 'experience' 
-                  ? 'bg-[#C5B99A] text-[#0F0F0F] shadow-lg' 
-                  : 'text-gray-400 hover:text-[#F5F1E8] hover:bg-white/5'
-              }`}
-              data-testid="experience-tab"
-            >
-              Experience
-            </button>
-          </div>
+      <div 
+        className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100] transition-all duration-300 ${
+          showFloatingTabs ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+      >
+        <div className="bg-[#1A1A1A]/95 backdrop-blur-xl rounded-full px-2 py-2 border border-gray-700/50 shadow-2xl flex gap-1">
+          <button
+            onClick={() => handleTabChange('projects')}
+            className={`px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+              activeTab === 'projects' 
+                ? 'bg-[#C5B99A] text-[#0F0F0F] shadow-lg' 
+                : 'text-gray-400 hover:text-[#F5F1E8] hover:bg-white/5'
+            }`}
+            data-testid="projects-tab"
+          >
+            Projects
+          </button>
+          <button
+            onClick={() => handleTabChange('experience')}
+            className={`px-8 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+              activeTab === 'experience' 
+                ? 'bg-[#C5B99A] text-[#0F0F0F] shadow-lg' 
+                : 'text-gray-400 hover:text-[#F5F1E8] hover:bg-white/5'
+            }`}
+            data-testid="experience-tab"
+          >
+            Experience
+          </button>
         </div>
-      )}
+      </div>
     </section>
   );
 };
