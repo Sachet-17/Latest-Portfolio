@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { files, socialLinks } from '../config/assets';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -143,15 +144,15 @@ const Navbar = () => {
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">EMAIL ADDRESS</p>
                 <a 
-                  href="mailto:sb9229@nyu.edu" 
+                  href={`mailto:${socialLinks.email}`}
                   className="text-[#F5F1E8] hover:text-[#C5B99A] transition-colors duration-300"
                 >
-                  sb9229@nyu.edu
+                  {socialLinks.email}
                 </a>
               </div>
               <div className="flex gap-6">
                 <a 
-                  href="https://linkedin.com/in/sachetbisi" 
+                  href={socialLinks.linkedin}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-[#F5F1E8] transition-colors duration-300"
@@ -159,7 +160,7 @@ const Navbar = () => {
                   LinkedIn
                 </a>
                 <a 
-                  href="https://github.com/sacherbisi" 
+                  href={socialLinks.github}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-[#F5F1E8] transition-colors duration-300"
@@ -167,7 +168,7 @@ const Navbar = () => {
                   Github
                 </a>
                 <a 
-                  href="/files/resume.pdf" 
+                  href={files.resume}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm text-gray-400 hover:text-[#F5F1E8] transition-colors duration-300"
