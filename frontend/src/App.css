@@ -41,8 +41,24 @@ textarea,
     }
 }
 
+/* Fade In Scale Animation for Opening */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 .animate-fade-in {
     animation: fadeIn 0.6s ease-out;
+}
+
+.animate-fade-in-scale {
+    animation: fadeInScale 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Menu Slide In */
