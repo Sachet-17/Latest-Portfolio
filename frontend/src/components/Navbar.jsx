@@ -65,14 +65,14 @@ const Navbar = () => {
 
       {/* Full Screen Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-white dark:bg-black">
+        <div className="fixed inset-0 z-[100] bg-white dark:bg-black animate-menu-fade-in">
           <div className="h-full flex flex-col">
             {/* Menu Header */}
             <div className="p-6 lg:p-12 flex items-center justify-between">
               <div className="text-sm text-gray-600 dark:text-gray-400">Menu</div>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="p-2 hover:opacity-60 transition-opacity"
+                className="p-2 hover:opacity-60 hover:rotate-90 transition-all duration-300"
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />
@@ -82,12 +82,17 @@ const Navbar = () => {
             {/* Menu Content */}
             <div className="flex-1 flex items-center justify-center">
               <div className="space-y-8">
-                {navItems.map((item) => (
+                {navItems.map((item, index) => (
                   <a
                     key={item.label}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
-                    className="block text-6xl md:text-8xl font-light hover:opacity-60 transition-opacity"
+                    className="block text-6xl md:text-8xl font-light hover:text-[#00aeef] hover:translate-x-4 transition-all duration-500"
+                    style={{
+                      animation: `menuItemSlide 0.6s ease-out ${index * 0.1}s forwards`,
+                      opacity: 0,
+                      transform: 'translateX(-50px)'
+                    }}
                   >
                     {item.label}
                   </a>
@@ -96,15 +101,15 @@ const Navbar = () => {
             </div>
 
             {/* Menu Footer */}
-            <div className="p-6 lg:p-12">
+            <div className="p-6 lg:p-12 animate-menu-footer-fade">
               <div className="flex justify-between items-end">
                 <div>
                   <h3 className="text-sm text-gray-600 dark:text-gray-400 mb-4">Socials</h3>
                   <div className="space-y-2">
-                    <a href="https://linkedin.com/in/sachetbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:opacity-60 transition-opacity">
+                    <a href="https://linkedin.com/in/sachetbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:text-[#00aeef] hover:translate-x-2 transition-all duration-300">
                       LinkedIn
                     </a>
-                    <a href="https://github.com/sacherbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:opacity-60 transition-opacity">
+                    <a href="https://github.com/sacherbisi" target="_blank" rel="noopener noreferrer" className="block text-sm hover:text-[#00aeef] hover:translate-x-2 transition-all duration-300">
                       Github
                     </a>
                   </div>
