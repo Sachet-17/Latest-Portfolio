@@ -73,15 +73,19 @@ const WorksSection = () => {
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`mb-20 transition-all duration-1000 ease-out ${
+          className={`mb-8 transition-all duration-1000 ease-out ${
             headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-16">
+          <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase mb-8">
             Selected Works
           </h2>
+        </div>
           
-          {/* Tabs */}
+        {/* Sticky Tabs - Always visible */}
+        <div className={`sticky top-0 z-20 bg-[#0F0F0F] py-6 transition-all duration-500 ${
+          headerVisible ? 'opacity-100' : 'opacity-0'
+        }`}>
           <div className="flex gap-12 border-b border-gray-800 pb-6">
             <button
               onClick={() => setActiveTab('projects')}
