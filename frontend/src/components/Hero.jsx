@@ -1,33 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { personalInfo } from '../data/mock';
-import GradientOrb from './GradientOrb';
 
 const Hero = () => {
-  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTyping(false);
-      setTimeout(() => {
-        setCurrentSkillIndex((prev) => (prev + 1) % personalInfo.skills.length);
-        setIsTyping(true);
-      }, 300);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   const scrollToSection = (e, href) => {
     e.preventDefault();
     const element = document.querySelector(href);
@@ -37,120 +13,44 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 lg:px-12 pt-20 overflow-hidden">
-      {/* Animated Background Orbs */}
-      <GradientOrb top="-20%" left="-10%" size="large" delay={0} />
-      <GradientOrb top="40%" left="70%" size="medium" delay={2} />
-      <GradientOrb top="-10%" left="60%" size="small" delay={4} />
-
-      {/* Spotlight effect following mouse */}
-      <div
-        className="absolute w-96 h-96 rounded-full blur-3xl opacity-10 pointer-events-none transition-all duration-300 ease-out"
-        style={{
-          background: 'radial-gradient(circle, rgba(0,174,239,0.6) 0%, transparent 70%)',
-          left: `${mousePosition.x - 192}px`,
-          top: `${mousePosition.y - 192}px`,
-        }}
-      />
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-
-      <div className="max-w-5xl mx-auto text-center relative z-10">
-        {/* Greeting with animation */}
-        <div className="mb-6 opacity-70 text-sm tracking-widest uppercase animate-fadeInDown flex items-center justify-center gap-2">
-          <Sparkles className="h-4 w-4 animate-pulse" />
-          Hello, I'm
-          <Sparkles className="h-4 w-4 animate-pulse" />
+    <section id="hero" className="min-h-screen bg-gray-100 dark:bg-black px-6 lg:px-12 pt-32 pb-20 relative">
+      <div className="max-w-7xl mx-auto">
+        {/* Main Heading */}
+        <div className="mb-12">
+          <h1 className="text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold leading-none tracking-tighter uppercase">
+            SACHET RANJAN BISI
+          </h1>
         </div>
 
-        {/* Name with gradient */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 animate-fadeInUp">
-          <span className="bg-gradient-to-r from-white via-[#00aeef] to-white bg-clip-text text-transparent animate-gradient-x">
-            {personalInfo.name}
-          </span>
-        </h1>
-
-        {/* Title with glow effect */}
-        <div className="mb-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-300 mb-6 relative inline-block">
-            <span className="relative z-10">{personalInfo.title}</span>
-            <div className="absolute inset-0 bg-[#00aeef]/20 blur-xl" />
-          </h2>
-          <div className="h-16 flex items-center justify-center">
-            <span
-              className={`text-lg md:text-xl font-normal transition-all duration-500 relative ${
-                isTyping ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
+        {/* Description and CTA */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div className="space-y-6">
+            <div className="w-12 h-px bg-black dark:bg-white"></div>
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              Open to job opportunities worldwide. Passionate about building production-ready AI/ML systems and scalable software solutions that make a difference.
+            </p>
+            <Button
+              onClick={(e) => scrollToSection(e, '#contact')}
+              className="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-full px-8 py-6 text-sm group"
             >
-              <span className="bg-gradient-to-r from-[#00aeef] to-[#2d388a] bg-clip-text text-transparent font-medium">
-                Specializing in {personalInfo.skills[currentSkillIndex]}
-              </span>
-            </span>
+              CONTACT
+              <ArrowUpRight className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Button>
+          </div>
+
+          {/* Placeholder for profile image - empty div for now */}
+          <div className="hidden md:block">
+            <div className="w-full aspect-[3/4] bg-gray-300 dark:bg-gray-800 rounded-lg"></div>
           </div>
         </div>
 
-        {/* Tagline */}
-        <p className="text-base md:text-lg max-w-2xl mx-auto mb-12 text-gray-400 leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
-          {personalInfo.tagline}
-        </p>
-
-        {/* CTA Buttons with enhanced effects */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
-          <Button
-            size="lg"
-            onClick={(e) => scrollToSection(e, '#projects')}
-            className="group relative overflow-hidden bg-gradient-to-r from-[#2d388a] to-[#00aeef] hover:from-[#1f2861] hover:to-[#0088bb] border-0 shadow-lg shadow-[#00aeef]/50 hover:shadow-[#00aeef]/70 transition-all duration-300 hover:scale-105"
-          >
-            <span className="relative z-10 flex items-center">
-              View Projects
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#00aeef] to-[#2d388a] opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={(e) => scrollToSection(e, '#contact')}
-            className="border-[#00aeef]/50 hover:border-[#00aeef] hover:bg-[#00aeef]/10 transition-all duration-300 hover:scale-105"
-          >
-            Contact Me
-          </Button>
-        </div>
-
-        {/* Social Links with enhanced hover */}
-        <div className="flex justify-center gap-6 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
-          <a
-            href={personalInfo.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full border border-gray-700 hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#00aeef]/50 transform group"
-            aria-label="GitHub"
-          >
-            <Github className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
-          </a>
-          <a
-            href={personalInfo.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full border border-gray-700 hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#00aeef]/50 transform group"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
-          </a>
-          <a
-            href={`mailto:${personalInfo.email}`}
-            className="p-3 rounded-full border border-gray-700 hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#00aeef]/50 transform group"
-            aria-label="Email"
-          >
-            <Mail className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
-          </a>
-        </div>
-
-        {/* Animated Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block animate-bounce">
-          <div className="w-6 h-10 border-2 border-[#00aeef]/50 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-[#00aeef] rounded-full animate-scroll" />
+        {/* Availability Badge */}
+        <div className="absolute bottom-20 right-6 lg:right-12">
+          <div className="text-right">
+            <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">AVAILABLE FOR WORK</div>
+            <div className="text-7xl md:text-9xl font-bold">
+              JUN'25
+            </div>
           </div>
         </div>
       </div>
