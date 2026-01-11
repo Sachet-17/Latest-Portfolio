@@ -9,27 +9,52 @@ const EducationSection = () => {
   const headerRef = useRef(null);
   const itemRefs = useRef([]);
   const sectionRef = useRef(null);
+  const rafRef = useRef(null);
+  const expandedIndexRef = useRef(0);
 
-  // Handle scroll direction and stacking
+  // Update ref when state changes
+  useEffect(() => {
+    expandedIndexRef.current = expandedIndex;
+  }, [expandedIndex]);
+
+  // Handle scroll direction and stacking with smooth throttling
   const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
     
-    // Check each item's position relative to viewport center
-    itemRefs.current.forEach((ref, index) => {
-      if (ref) {
-        const rect = ref.getBoundingClientRect();
-        const viewportCenter = window.innerHeight / 2;
-        const itemCenter = rect.top + rect.height / 2;
-        
-        // Item is near center of viewport
-        if (itemCenter > viewportCenter - 200 && itemCenter < viewportCenter + 200) {
-          setExpandedIndex(index);
+    rafRef.current = requestAnimationFrame(() => {
+      const currentScrollY = window.scrollY;
+      
+      // Find the item closest to the viewport center
+      let closestIndex = expandedIndexRef.current;
+      let closestDistance = Infinity;
+      const viewportCenter = window.innerHeight / 2;
+      
+      itemRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const rect = ref.getBoundingClientRect();
+          const itemCenter = rect.top + rect.height / 2;
+          const distance = Math.abs(itemCenter - viewportCenter);
+          
+          // Item is near center of viewport (increased threshold for smoother transitions)
+          if (itemCenter > viewportCenter - 300 && itemCenter < viewportCenter + 300) {
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestIndex = index;
+            }
+          }
         }
+      });
+      
+      // Only update if the index actually changed
+      if (closestIndex !== expandedIndexRef.current) {
+        setExpandedIndex(closestIndex);
       }
+      
+      setLastScrollY(currentScrollY);
     });
-    
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
     // Header observer
@@ -73,6 +98,9 @@ const EducationSection = () => {
       headerObserver.disconnect();
       itemsObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, [handleScroll]);
 
@@ -115,7 +143,7 @@ const EducationSection = () => {
               <div 
                 key={edu.id} 
                 ref={el => itemRefs.current[index] = el}
-                className={`border-t border-gray-800 transition-all duration-700 ease-out ${
+                className={`border-t border-gray-800 transition-all duration-1000 ease-in-out ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ transitionDelay: `${index * 50}ms` }}
@@ -126,7 +154,7 @@ const EducationSection = () => {
                   {/* LEFT - Content */}
                   <div className="col-span-9 md:col-span-10 order-1">
                     {/* Institution Name - Main Heading */}
-                    <h3 className={`text-2xl md:text-4xl lg:text-5xl font-bold transition-all duration-500 ${
+                    <h3 className={`text-2xl md:text-4xl lg:text-5xl font-bold transition-all duration-700 ease-in-out ${
                       isExpanded ? 'text-[#F5F1E8]' : 'text-[#555555]'
                     }`}>
                       {edu.institution}
@@ -134,7 +162,7 @@ const EducationSection = () => {
 
                     {/* Expanded Content with smooth transition */}
                     <div 
-                      className={`grid transition-all duration-700 ease-out ${
+                      className={`grid transition-all duration-1000 ease-in-out ${
                         isExpanded 
                           ? 'grid-rows-[1fr] opacity-100 mt-8' 
                           : 'grid-rows-[0fr] opacity-0 mt-0'
@@ -181,7 +209,7 @@ const EducationSection = () => {
                   {/* RIGHT - Sticky Number */}
                   <div className="col-span-3 md:col-span-2 order-2">
                     <div className="sticky top-32 text-right">
-                      <div className={`text-6xl md:text-7xl lg:text-8xl number-aesthetic transition-all duration-500 ${
+                      <div className={`text-6xl md:text-7xl lg:text-8xl number-aesthetic transition-all duration-700 ease-in-out ${
                         isExpanded ? 'text-[#C5B99A]' : 'text-[#333333]'
                       }`}>
                         {String(index + 1).padStart(2, '0')}
