@@ -37,6 +37,48 @@ button, a, input, textarea {
     animation-play-state: paused;
 }
 
+/* Menu Animations */
+@keyframes menuFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes menuItemSlide {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes menuFooterFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-menu-fade-in {
+    animation: menuFadeIn 0.3s ease-out;
+}
+
+.animate-menu-footer-fade {
+    animation: menuFooterFade 0.6s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+/* Smooth image scaling */
+img {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
@@ -49,10 +91,11 @@ button, a, input, textarea {
 ::-webkit-scrollbar-thumb {
     background: #333;
     border-radius: 4px;
+    transition: background 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #00aeef;
 }
 
 .dark ::-webkit-scrollbar-track {
@@ -64,5 +107,6 @@ button, a, input, textarea {
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-    background: #999;
+    background: #00aeef;
 }
+
