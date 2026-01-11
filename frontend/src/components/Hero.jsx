@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, FileText } from 'lucide-react';
 import { Button } from './ui/button';
+import { images, files } from '../config/assets';
 
 const Hero = () => {
   const [showCurtain, setShowCurtain] = useState(true);
   const [animateContent, setAnimateContent] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     // Opening curtain animation sequence
@@ -32,7 +34,7 @@ const Hero = () => {
 
   const openResume = () => {
     // Opens resume from files folder in new tab
-    window.open('/files/resume.pdf', '_blank');
+    window.open(files.resume, '_blank');
   };
 
   return (
@@ -124,9 +126,18 @@ const Hero = () => {
               >
                 <div className="relative">
                   <div className="aspect-[4/3] bg-[#E8E4DA] rounded-2xl overflow-hidden group cursor-pointer hover-lift">
-                    <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
-                      <span className="text-gray-500 text-lg font-light">[Your Profile Photo]</span>
-                    </div>
+                    {!imageError ? (
+                      <img 
+                        src={images.profile}
+                        alt="Sachet Ranjan Bisi"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                        onError={() => setImageError(true)}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-[#E8E4DA] via-[#DDD9CF] to-[#D2CEC4] hover:scale-105 transition-transform duration-700 ease-out flex items-center justify-center">
+                        <span className="text-gray-500 text-lg font-light">[Your Profile Photo]</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
