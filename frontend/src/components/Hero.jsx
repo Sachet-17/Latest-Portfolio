@@ -5,9 +5,12 @@ import { personalInfo } from '../data/mock';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsVisible(true), 100);
+    // Initial delay for page load
+    setTimeout(() => setShowContent(true), 300);
+    setTimeout(() => setIsVisible(true), 500);
   }, []);
 
   const scrollToSection = (e, href) => {
@@ -18,20 +21,30 @@ const Hero = () => {
     }
   };
 
+  if (!showContent) {
+    return (
+      <div className="min-h-screen bg-[#F5F1E8] flex items-center justify-center">
+        <div className="animate-fade-in-scale">
+          <div className="text-6xl font-light text-[#0F0F0F] tracking-tight">SRB</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <section id="hero" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 pt-32 pb-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Main Heading - Staggered Animation */}
         <div className="mb-16">
           <div className="overflow-hidden">
-            <h1 className={`text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] mb-4 transform transition-all duration-1200 ease-out ${
+            <h1 className={`text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] mb-4 transform transition-all duration-1500 ease-out ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
             }`}>
               SACHET
             </h1>
           </div>
           <div className="overflow-hidden">
-            <h1 className={`text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] transform transition-all duration-1200 ease-out delay-150 ${
+            <h1 className={`text-[12vw] md:text-[10vw] lg:text-[8vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] transform transition-all duration-1500 ease-out delay-200 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
             }`}>
               RANJAN BISI
@@ -42,7 +55,7 @@ const Hero = () => {
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
           {/* Left Column - Description */}
-          <div className={`md:col-span-5 space-y-6 transform transition-all duration-1000 ease-out delay-500 ${
+          <div className={`md:col-span-5 space-y-6 transform transition-all duration-1200 ease-out delay-700 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <div className="flex items-center gap-4 text-sm text-gray-600">
@@ -62,7 +75,7 @@ const Hero = () => {
           </div>
 
           {/* Right Column - Image Placeholder */}
-          <div className={`md:col-span-7 transform transition-all duration-1000 ease-out delay-700 ${
+          <div className={`md:col-span-7 transform transition-all duration-1200 ease-out delay-900 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <div className="relative">
@@ -76,7 +89,7 @@ const Hero = () => {
         </div>
 
         {/* Availability Badge - Bottom Right */}
-        <div className={`absolute bottom-12 right-6 lg:right-12 text-right transform transition-all duration-1000 ease-out delay-900 ${
+        <div className={`absolute bottom-12 right-6 lg:right-12 text-right transform transition-all duration-1200 ease-out delay-1100 ${
           isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
         }`}>
           <div className="mb-3">

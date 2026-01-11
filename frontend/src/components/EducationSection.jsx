@@ -3,35 +3,59 @@ import { education } from '../data/mock';
 
 const EducationSection = () => {
   const [visibleItems, setVisibleItems] = useState([]);
+  const [headerVisible, setHeaderVisible] = useState(false);
   const itemRefs = useRef([]);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // Header observer
+    const headerObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeaderVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      headerObserver.observe(sectionRef.current);
+    }
+
+    // Items observer
+    const itemsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = itemRefs.current.indexOf(entry.target);
             if (index !== -1 && !visibleItems.includes(index)) {
-              setVisibleItems(prev => [...prev, index]);
+              setTimeout(() => {
+                setVisibleItems(prev => [...prev, index]);
+              }, index * 200);
             }
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
 
     itemRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
+      if (ref) itemsObserver.observe(ref);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      headerObserver.disconnect();
+      itemsObserver.disconnect();
+    };
   }, []);
 
   return (
-    <section id="education" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 py-24">
+    <section id="education" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 py-24" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-24">
+        {/* Section Header - Stays in place */}
+        <div className={`mb-24 transition-all duration-1000 ${
+          headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        }`}>
           <h2 className="text-[8vw] md:text-[6vw] font-light text-[#0F0F0F] mb-8">
             EDUCATION /
           </h2>
@@ -43,16 +67,15 @@ const EducationSection = () => {
           </div>
         </div>
 
-        {/* Education Items */}
+        {/* Education Items - Stack up animation */}
         <div className="space-y-24">
           {education.map((edu, index) => (
             <div 
               key={edu.id} 
               ref={el => itemRefs.current[index] = el}
-              className={`border-t border-[#D2CEC4] pt-12 transform transition-all duration-1000 ${
+              className={`border-t border-[#D2CEC4] pt-12 transform transition-all duration-1000 ease-out ${
                 visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
               }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Number */}
