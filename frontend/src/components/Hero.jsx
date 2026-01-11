@@ -41,7 +41,7 @@ const Hero = () => {
       {/* Opening Curtain Animation */}
       {showCurtain && (
         <div className="opening-curtain" data-testid="opening-curtain">
-          <div className="opening-logo">SRB</div>
+          <div className="opening-logo">i.am.SRB...</div>
         </div>
       )}
 
