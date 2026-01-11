@@ -9,31 +9,136 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 /* Selection Color */
 ::selection {
     background-color: #0F0F0F;
     color: #F5F1E8;
 }
 
-/* Remove default transitions */
-* {
-    transition: none;
-}
-
 /* Add specific smooth transitions */
 button,
 a,
 input,
-textarea,
-.transition-all {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+textarea {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Fade In Animation */
-@keyframes fadeIn {
+/* ============================================
+   OPENING ANIMATION - CURTAIN REVEAL
+   ============================================ */
+
+/* Curtain Overlay */
+.opening-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0F0F0F;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: curtainReveal 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes curtainReveal {
+    0% {
+        clip-path: inset(0 0 0 0);
+    }
+    100% {
+        clip-path: inset(0 0 100% 0);
+    }
+}
+
+/* Logo Animation in Curtain */
+.opening-logo {
+    color: #F5F1E8;
+    font-size: 8vw;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    animation: logoFade 1.2s ease-out forwards;
+}
+
+@keyframes logoFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   TEXT REVEAL ANIMATIONS
+   ============================================ */
+
+/* Line Reveal - Horizontal */
+.reveal-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #F5F1E8;
+    transform: translateX(-101%);
+    animation: lineReveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes lineReveal {
+    0% {
+        transform: translateX(-101%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(101%);
+    }
+}
+
+/* Character Split Animation */
+.char-reveal {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: charReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes charReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   SLIDE IN ANIMATIONS
+   ============================================ */
+
+/* Slide Up */
+@keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
@@ -41,27 +146,138 @@ textarea,
     }
 }
 
-/* Fade In Scale Animation for Opening */
-@keyframes fadeInScale {
-    0% {
+.animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+    from {
         opacity: 0;
-        transform: scale(0.8);
+        transform: translateX(-60px);
     }
-    100% {
+    to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-right {
+    animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ============================================
+   STACKING ANIMATION FOR EDUCATION
+   ============================================ */
+
+.stack-item {
+    opacity: 0;
+    transform: translateY(80px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stack-item.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Stagger delays */
+.stack-item:nth-child(1) { transition-delay: 0.1s; }
+.stack-item:nth-child(2) { transition-delay: 0.2s; }
+.stack-item:nth-child(3) { transition-delay: 0.3s; }
+.stack-item:nth-child(4) { transition-delay: 0.4s; }
+
+/* ============================================
+   FADE ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.6s ease-out forwards;
 }
 
-.animate-fade-in-scale {
-    animation: fadeInScale 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* Menu Slide In */
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+
+.hover-lift {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Magnetic hover effect */
+.magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Text underline animation */
+.underline-hover {
+    position: relative;
+}
+
+.underline-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.underline-hover:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   MENU ANIMATIONS
+   ============================================ */
+
 @keyframes menuSlideIn {
     from {
         transform: translateX(100%);
@@ -72,14 +288,13 @@ textarea,
 }
 
 .animate-menu-slide-in {
-    animation: menuSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: menuSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Menu Item Slide */
 @keyframes menuItemSlide {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateX(-40px);
     }
     to {
         opacity: 1;
@@ -87,15 +302,21 @@ textarea,
     }
 }
 
-/* Smooth Image Scaling */
+/* ============================================
+   IMAGE & ELEMENT SCALING
+   ============================================ */
+
 img,
 .hover\:scale-105 {
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Custom Scrollbar */
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -104,41 +325,99 @@ img,
 
 ::-webkit-scrollbar-thumb {
     background: #0F0F0F;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #1A1A1A;
 }
 
-/* Prevent text selection on interactive elements */
+/* ============================================
+   FORM FOCUS STATES
+   ============================================ */
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+/* ============================================
+   TAB TRANSITIONS
+   ============================================ */
+
+.tab-content-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.tab-content-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   NUMBER COUNTER ANIMATION
+   ============================================ */
+
+.number-reveal {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: numberReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes numberReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   BUTTON INTERACTIONS
+   ============================================ */
+
 button,
 a {
     -webkit-user-select: none;
     user-select: none;
 }
 
-/* Smooth focus states */
-input:focus,
-textarea:focus {
-    outline: none;
+.btn-hover-fill {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-/* Marquee Animation */
-@keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+.btn-hover-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #F5F1E8;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
 }
 
-.animate-marquee {
-    animation: marquee 60s linear infinite;
+.btn-hover-fill:hover::before {
+    transform: translateY(0);
 }
 
-.animate-marquee:hover {
-    animation-play-state: paused;
+/* ============================================
+   SMOOTH SECTION TRANSITIONS
+   ============================================ */
+
+section {
+    position: relative;
+}
+
+/* Parallax-like depth effect */
+.depth-layer {
+    transform: translateZ(0);
+    will-change: transform;
 }
 

@@ -5,38 +5,39 @@ const EducationSection = () => {
   const [visibleItems, setVisibleItems] = useState([]);
   const [headerVisible, setHeaderVisible] = useState(false);
   const itemRefs = useRef([]);
-  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
-    // Header observer
+    // Header observer - simple fade, no stacking
     const headerObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setHeaderVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      headerObserver.observe(sectionRef.current);
+    if (headerRef.current) {
+      headerObserver.observe(headerRef.current);
     }
 
-    // Items observer
+    // Items observer - stacking effect
     const itemsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = itemRefs.current.indexOf(entry.target);
             if (index !== -1 && !visibleItems.includes(index)) {
+              // Staggered reveal for stack effect
               setTimeout(() => {
                 setVisibleItems(prev => [...prev, index]);
-              }, index * 200);
+              }, index * 250);
             }
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
     );
 
     itemRefs.current.forEach((ref) => {
@@ -47,15 +48,18 @@ const EducationSection = () => {
       headerObserver.disconnect();
       itemsObserver.disconnect();
     };
-  }, []);
+  }, [visibleItems]);
 
   return (
-    <section id="education" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 py-24" ref={sectionRef}>
+    <section id="education" className="min-h-screen bg-[#F5F1E8] px-6 lg:px-12 py-24" data-testid="education-section">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header - Stays in place */}
-        <div className={`mb-24 transition-all duration-1000 ${
-          headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}>
+        {/* Section Header - Simple fade, NO stacking */}
+        <div 
+          ref={headerRef}
+          className={`mb-24 transition-all duration-800 ease-out ${
+            headerVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <h2 className="text-[8vw] md:text-[6vw] font-light text-[#0F0F0F] mb-8">
             EDUCATION /
           </h2>
@@ -67,20 +71,21 @@ const EducationSection = () => {
           </div>
         </div>
 
-        {/* Education Items - Stack up animation */}
+        {/* Education Items - STACKING animation */}
         <div className="space-y-24">
           {education.map((edu, index) => (
             <div 
               key={edu.id} 
               ref={el => itemRefs.current[index] = el}
-              className={`border-t border-[#D2CEC4] pt-12 transform transition-all duration-1000 ease-out ${
-                visibleItems.includes(index) ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+              className={`stack-item border-t border-[#D2CEC4] pt-12 ${
+                visibleItems.includes(index) ? 'visible' : ''
               }`}
+              data-testid={`education-item-${index}`}
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                {/* Number */}
+                {/* Number - Beige colored */}
                 <div className="md:col-span-2">
-                  <div className="text-6xl font-light text-gray-400 hover:text-[#0F0F0F] transition-colors duration-500">
+                  <div className="text-6xl font-light text-[#C5C0B5] hover:text-[#0F0F0F] transition-colors duration-500">
                     ({String(index + 1).padStart(2, '0')})
                   </div>
                 </div>
@@ -106,9 +111,9 @@ const EducationSection = () => {
                       {edu.coursework.map((course, idx) => (
                         <div 
                           key={course}
-                          className="flex items-center gap-4 border-b border-[#D2CEC4] pb-3 transform transition-all duration-500 hover:translate-x-2"
+                          className="flex items-center gap-4 border-b border-[#D2CEC4] pb-3 transform transition-all duration-400 hover:translate-x-3"
                         >
-                          <span className="text-sm text-gray-500 min-w-[30px]">
+                          <span className="text-sm text-[#C5C0B5] min-w-[30px]">
                             {String(idx + 1).padStart(2, '0')}
                           </span>
                           <span className="text-lg text-[#0F0F0F]">
