@@ -47,7 +47,7 @@ const Hero = () => {
       <div
         className="absolute w-96 h-96 rounded-full blur-3xl opacity-10 pointer-events-none transition-all duration-300 ease-out"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0,174,239,0.6) 0%, transparent 70%)',
           left: `${mousePosition.x - 192}px`,
           top: `${mousePosition.y - 192}px`,
         }}
@@ -66,7 +66,7 @@ const Hero = () => {
 
         {/* Name with gradient */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 animate-fadeInUp">
-          <span className="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent animate-gradient-x">
+          <span className="bg-gradient-to-r from-white via-[#00aeef] to-white bg-clip-text text-transparent animate-gradient-x">
             {personalInfo.name}
           </span>
         </h1>
@@ -75,7 +75,7 @@ const Hero = () => {
         <div className="mb-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
           <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-300 mb-6 relative inline-block">
             <span className="relative z-10">{personalInfo.title}</span>
-            <div className="absolute inset-0 bg-purple-500/20 blur-xl" />
+            <div className="absolute inset-0 bg-[#00aeef]/20 blur-xl" />
           </h2>
           <div className="h-16 flex items-center justify-center">
             <span
@@ -83,7 +83,7 @@ const Hero = () => {
                 isTyping ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
             >
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-medium">
+              <span className="bg-gradient-to-r from-[#00aeef] to-[#2d388a] bg-clip-text text-transparent font-medium">
                 Specializing in {personalInfo.skills[currentSkillIndex]}
               </span>
             </span>
@@ -100,19 +100,19 @@ const Hero = () => {
           <Button
             size="lg"
             onClick={(e) => scrollToSection(e, '#projects')}
-            className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 border-0 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105"
+            className="group relative overflow-hidden bg-gradient-to-r from-[#2d388a] to-[#00aeef] hover:from-[#1f2861] hover:to-[#0088bb] border-0 shadow-lg shadow-[#00aeef]/50 hover:shadow-[#00aeef]/70 transition-all duration-300 hover:scale-105"
           >
             <span className="relative z-10 flex items-center">
               View Projects
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00aeef] to-[#2d388a] opacity-0 group-hover:opacity-100 transition-opacity" />
           </Button>
           <Button
             size="lg"
             variant="outline"
             onClick={(e) => scrollToSection(e, '#contact')}
-            className="border-purple-500/50 hover:border-purple-400 hover:bg-purple-500/10 transition-all duration-300 hover:scale-105"
+            className="border-[#00aeef]/50 hover:border-[#00aeef] hover:bg-[#00aeef]/10 transition-all duration-300 hover:scale-105"
           >
             Contact Me
           </Button>
@@ -124,33 +124,33 @@ const Hero = () => {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-purple-500/50 transform group"
+            className="p-3 rounded-full border border-gray-700 hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#00aeef]/50 transform group"
             aria-label="GitHub"
           >
-            <Github className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+            <Github className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
           </a>
           <a
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-purple-500/50 transform group"
+            className="p-3 rounded-full border border-gray-700 hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#00aeef]/50 transform group"
             aria-label="LinkedIn"
           >
-            <Linkedin className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+            <Linkedin className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="p-3 rounded-full border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-purple-500/50 transform group"
+            className="p-3 rounded-full border border-gray-700 hover:border-[#00aeef] transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#00aeef]/50 transform group"
             aria-label="Email"
           >
-            <Mail className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+            <Mail className="h-5 w-5 group-hover:text-[#00aeef] transition-colors" />
           </a>
         </div>
 
         {/* Animated Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block animate-bounce">
-          <div className="w-6 h-10 border-2 border-purple-500/50 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-purple-500 rounded-full animate-scroll" />
+          <div className="w-6 h-10 border-2 border-[#00aeef]/50 rounded-full flex justify-center pt-2">
+            <div className="w-1 h-3 bg-[#00aeef] rounded-full animate-scroll" />
           </div>
         </div>
       </div>

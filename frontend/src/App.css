@@ -5,15 +5,15 @@ html {
 
 /* Selection Color */
 ::selection {
-    background-color: #a855f7;
+    background-color: #00aeef;
     color: #fff;
 }
 
 /* Grid Pattern */
 .bg-grid-pattern {
     background-image: 
-        linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+        linear-gradient(rgba(0, 174, 239, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 174, 239, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
 }
 
@@ -74,10 +74,10 @@ html {
 
 @keyframes pulse-glow {
     0%, 100% {
-        box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        box-shadow: 0 0 20px rgba(0, 174, 239, 0.4);
     }
     50% {
-        box-shadow: 0 0 40px rgba(168, 85, 247, 0.8);
+        box-shadow: 0 0 40px rgba(0, 174, 239, 0.8);
     }
 }
 

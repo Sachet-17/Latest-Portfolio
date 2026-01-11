@@ -13,7 +13,7 @@ const GradientOrb = ({ top, left, size = 'large', delay = 0 }) => {
       style={{
         top,
         left,
-        background: 'radial-gradient(circle, rgba(99,102,241,0.4) 0%, rgba(168,85,247,0.3) 50%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(45,56,138,0.4) 0%, rgba(0,174,239,0.3) 50%, transparent 70%)',
         animationDelay: `${delay}s`,
         animationDuration: '8s',
       }}
