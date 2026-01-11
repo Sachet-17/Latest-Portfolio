@@ -91,7 +91,7 @@ const Hero = () => {
                   <span>AI/ML Engineer & SDE</span>
                 </div>
                 <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
-                  Open to job opportunities worldwide. Passionate about building production-ready AI/ML systems and scalable software solutions.
+                  Open to job opportunities worldwide. Passionate about building polished, reliable, scalable systems and clean UIs.
                 </p>
                 
                 {/* Buttons */}
