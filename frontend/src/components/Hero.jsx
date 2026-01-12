@@ -45,14 +45,14 @@ const Hero = () => {
         </div>
       )}
 
-      <section id="hero" className="h-screen bg-[#F5F1E8] dark:bg-[#0A0A0A] px-6 lg:px-16 pt-20 pb-8 relative overflow-hidden transition-colors duration-500" data-testid="hero-section">
+      <section id="hero" className="min-h-screen bg-[#F5F1E8] dark:bg-[#0A0A0A] px-6 lg:px-16 pt-32 pb-24 relative overflow-hidden transition-colors duration-500" data-testid="hero-section">
         <div className="max-w-7xl mx-auto h-full flex flex-col">
           {/* Main Heading */}
           <div className="flex-1 flex flex-col justify-center">
-            <div className="mb-6">
+            <div className="mb-12">
               <div className="overflow-hidden">
                 <h1 
-                  className={`text-[8vw] md:text-[6vw] lg:text-[5vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] dark:text-[#F5F1E8] transform transition-all duration-1000 ease-out ${
+                  className={`text-[14vw] md:text-[12vw] lg:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase text-[#0F0F0F] dark:text-[#F5F1E8] transform transition-all duration-1000 ease-out ${
                     animateContent ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                   }`}
                   style={{ transitionDelay: '0ms' }}
@@ -62,7 +62,7 @@ const Hero = () => {
               </div>
               <div className="overflow-hidden">
                 <h1 
-                  className={`text-[8vw] md:text-[6vw] lg:text-[5vw] font-bold leading-[0.9] tracking-tighter uppercase text-[#0F0F0F] dark:text-[#F5F1E8] transform transition-all duration-1000 ease-out ${
+                  className={`text-[14vw] md:text-[12vw] lg:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase text-[#0F0F0F] dark:text-[#F5F1E8] transform transition-all duration-1000 ease-out ${
                     animateContent ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                   }`}
                   style={{ transitionDelay: '150ms' }}
@@ -73,10 +73,10 @@ const Hero = () => {
             </div>
 
             {/* Bottom Section - Description & Buttons */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
               {/* Left - Description */}
               <div 
-                className={`lg:col-span-5 space-y-4 transform transition-all duration-1000 ease-out ${
+                className={`lg:col-span-5 space-y-8 transform transition-all duration-1000 ease-out ${
                   animateContent ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
                 }`}
                 style={{ transitionDelay: '400ms' }}
@@ -90,12 +90,12 @@ const Hero = () => {
                   ></div>
                   <span>AI/ML Engineer & SDE</span>
                 </div>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
+                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
                   Open to job opportunities worldwide. Passionate about building polished, reliable, scalable systems and clean UIs.
                 </p>
                 
                 {/* Buttons */}
-                <div className="flex items-center gap-4 pt-2">
+                <div className="flex items-center gap-4 pt-4">
                   <Button
                     onClick={(e) => scrollToSection(e, '#contact')}
                     className="bg-[#0F0F0F] dark:bg-[#F5F1E8] text-[#F5F1E8] dark:text-[#0F0F0F] hover:bg-[#1A1A1A] dark:hover:bg-[#E8E4DA] rounded-full px-8 py-6 text-sm font-medium group transition-all duration-400 hover:scale-105"
@@ -124,7 +124,7 @@ const Hero = () => {
                 style={{ transitionDelay: '500ms' }}
               >
                 <div className="relative">
-                  <div className="aspect-[3/2] bg-[#E8E4DA] rounded-2xl overflow-hidden group cursor-pointer hover-lift shadow-2xl">
+                  <div className="aspect-[4/3] bg-[#E8E4DA] rounded-2xl overflow-hidden group cursor-pointer hover-lift shadow-2xl">
                     <img 
                       src="/images/hero.jpg"
                       alt="Hero"
@@ -149,18 +149,18 @@ const Hero = () => {
 
           {/* Availability Badge - Bottom Right */}
           <div 
-            className={`absolute bottom-4 right-6 lg:right-16 text-right transform transition-all duration-1000 ease-out ${
+            className={`absolute bottom-8 right-6 lg:right-16 text-right transform transition-all duration-1000 ease-out ${
               animateContent ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0'
             }`}
             style={{ transitionDelay: '700ms' }}
           >
-            <div className="mb-2">
+            <div className="mb-3">
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#0F0F0F] dark:bg-[#F5F1E8] text-[#F5F1E8] dark:text-[#0F0F0F] text-xs rounded-full">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                 AVAILABLE FOR WORK
               </span>
             </div>
-            <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#0F0F0F] dark:text-[#F5F1E8] hover:text-gray-600 dark:hover:text-gray-400 transition-colors duration-500 cursor-default">
+            <div className="text-7xl md:text-8xl lg:text-9xl font-bold text-[#0F0F0F] dark:text-[#F5F1E8] hover:text-gray-600 dark:hover:text-gray-400 transition-colors duration-500 cursor-default">
               ASAP'26
             </div>
           </div>
