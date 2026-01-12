@@ -60,7 +60,7 @@ const EducationSection = () => {
     <section 
       id="education" 
       ref={sectionRef}
-      className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-4 lg:px-12 py-24" 
+      className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-4 lg:px-10 py-20" 
       data-testid="education-section"
     >
       {/* Google Font for numbers */}
@@ -87,11 +87,11 @@ const EducationSection = () => {
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`mb-16 transition-all duration-1000 ease-out ${
+          className={`mb-14 transition-all duration-1000 ease-out ${
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-[9vw] md:text-[7.5vw] lg:text-[6vw] font-bold leading-[0.9] tracking-tighter uppercase">
+          <h2 className="text-[8vw] md:text-[6.5vw] lg:text-[5.5vw] font-bold leading-[0.9] tracking-tighter uppercase">
             WHERE I STUDIED/
           </h2>
         </div>
@@ -112,7 +112,7 @@ const EducationSection = () => {
                 style={{ transitionDelay: `${index * 50}ms` }}
                 data-testid={`education-item-${index}`}
               >
-                <div className="grid grid-cols-12 gap-6 md:gap-12 items-start">
+                <div className="grid grid-cols-12 gap-5 md:gap-10 items-start">
                   {/* LEFT - Content Column */}
                   <div className="col-span-9 md:col-span-10 order-1">
                     {/* Header Row - Clickable */}
@@ -120,9 +120,9 @@ const EducationSection = () => {
                       onClick={() => handleItemClick(index)}
                       className="w-full text-left group cursor-pointer"
                     >
-                      <div className="py-7 md:py-10">
+                      <div className="py-6 md:py-8">
                         {/* Institution Name - Main Heading */}
-                        <h3 className={`text-xl md:text-3xl lg:text-4xl font-bold education-text-transition ${
+                        <h3 className={`text-lg md:text-2xl lg:text-3xl font-bold education-text-transition ${
                           isExpanded ? 'text-[#F5F1E8]' : 'text-[#555555]'
                         } ${!isExpanded ? 'group-hover:text-[#777777]' : ''} transition-all duration-300`}>
                           {edu.institution}
@@ -134,14 +134,14 @@ const EducationSection = () => {
                     <div 
                       className={`grid education-expand ${
                         isExpanded 
-                          ? 'grid-rows-[1fr] opacity-100 mt-6' 
+                          ? 'grid-rows-[1fr] opacity-100 mt-5' 
                           : 'grid-rows-[0fr] opacity-0 mt-0'
                       }`}
                     >
                       <div className="overflow-hidden">
                         {/* Degree & Details */}
-                        <div className="mb-7">
-                          <p className="text-lg md:text-xl text-[#F5F1E8] font-light mb-2">
+                        <div className="mb-5">
+                          <p className="text-base md:text-lg text-[#F5F1E8] font-light mb-2">
                             {edu.degree}
                           </p>
                           <p className="text-sm text-gray-500">
@@ -150,17 +150,17 @@ const EducationSection = () => {
                         </div>
 
                         {/* Description */}
-                        <p className="text-gray-400 leading-relaxed mb-7 max-w-2xl text-base">
+                        <p className="text-gray-400 leading-relaxed mb-5 max-w-2xl text-sm">
                           {edu.description}
                         </p>
 
                         {/* Coursework in 2-column grid */}
                         {edu.coursework.length > 0 && (
-                          <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+                          <div className="grid grid-cols-2 gap-x-10 gap-y-3">
                             {edu.coursework.map((course, idx) => (
                               <div 
                                 key={course}
-                                className="flex items-center gap-4 border-b border-gray-800 pb-4 hover:translate-x-2 transition-transform duration-300"
+                                className="flex items-center gap-3 border-b border-gray-800 pb-3 hover:translate-x-2 transition-transform duration-300"
                               >
                                 <span className="text-sm text-[#C5B99A] min-w-[32px] number-aesthetic">
                                   {String(idx + 1).padStart(2, '0')}
@@ -178,8 +178,8 @@ const EducationSection = () => {
 
                   {/* RIGHT - Sticky Number Column */}
                   <div className="col-span-3 md:col-span-2 order-2">
-                    <div className="sticky top-24 text-right py-7 md:py-10">
-                      <div className={`text-4xl md:text-5xl lg:text-6xl number-aesthetic education-text-transition ${
+                    <div className="sticky top-20 text-right py-6 md:py-8">
+                      <div className={`text-3xl md:text-4xl lg:text-5xl number-aesthetic education-text-transition ${
                         isExpanded ? 'text-[#C5B99A]' : 'text-[#333333]'
                       } transition-all duration-300`}>
                         {String(index + 1).padStart(2, '0')}

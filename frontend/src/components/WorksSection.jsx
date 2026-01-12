@@ -80,7 +80,7 @@ const WorksSection = () => {
       <section 
         id="works" 
         ref={sectionRef}
-        className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-4 lg:px-12 py-24" 
+        className="min-h-screen bg-[#0F0F0F] text-[#F5F1E8] px-4 lg:px-10 py-20" 
         data-testid="works-section"
       >
         <style>{`
@@ -95,11 +95,11 @@ const WorksSection = () => {
           {/* Section Header */}
           <div 
             ref={headerRef}
-            className={`mb-12 transition-all duration-1000 ease-out ${
+            className={`mb-10 transition-all duration-1000 ease-out ${
               headerVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <h2 className="text-[9vw] md:text-[7.5vw] lg:text-[6vw] font-bold leading-[0.9] tracking-tighter uppercase">
+            <h2 className="text-[8vw] md:text-[6.5vw] lg:text-[5.5vw] font-bold leading-[0.9] tracking-tighter uppercase">
               SELECTED WORKS/
             </h2>
           </div>
@@ -110,36 +110,36 @@ const WorksSection = () => {
               <div 
                 key={`${activeTab}-${work.id}`}
                 ref={el => itemRefs.current[index] = el}
-                className="min-h-[85vh] py-16 border-t border-gray-800"
+                className="min-h-[85vh] py-14 border-t border-gray-800"
                 data-testid={`${activeTab}-item-${index}`}
               >
-                <div className="grid grid-cols-12 gap-6 md:gap-12 h-full">
+                <div className="grid grid-cols-12 gap-5 md:gap-10 h-full">
                   {/* LEFT - Content */}
-                  <div className="col-span-9 md:col-span-10 space-y-7 order-1">
+                  <div className="col-span-9 md:col-span-10 space-y-6 order-1">
                     <div className="text-sm text-gray-500 uppercase tracking-widest">
                       {activeTab === 'projects' ? '(Project)' : '(Experience)'}
                     </div>
 
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#F5F1E8] leading-tight">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#F5F1E8] leading-tight">
                       {work.title || work.role}
                     </h3>
 
-                    <div className="text-base text-gray-400">
+                    <div className="text-sm text-gray-400">
                       {activeTab === 'projects' 
                         ? work.date 
                         : `${work.company} • ${work.period}`
                       }
                     </div>
 
-                    <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl font-light">
+                    <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl font-light">
                       {work.longDescription || work.description}
                     </p>
 
                     {/* Impact Metrics */}
                     {work.achievements && work.achievements.length > 0 && (
-                      <div className="space-y-6 mt-12">
+                      <div className="space-y-5 mt-10">
                         <h4 className="text-sm text-gray-500 uppercase tracking-widest">Impact</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                           {work.achievements.map((achievement, idx) => {
                             const match = achievement.match(/(\d+%?)/);
                             const highlight = match ? match[1] : null;
@@ -150,10 +150,10 @@ const WorksSection = () => {
                             return (
                               <div 
                                 key={idx}
-                                className="bg-[#151515] rounded-xl p-6 border border-gray-800/50 hover:border-[#C5B99A]/50 transition-all duration-500 group"
+                                className="bg-[#151515] rounded-xl p-5 border border-gray-800/50 hover:border-[#C5B99A]/50 transition-all duration-500 group"
                               >
                                 {highlight && (
-                                  <div className="text-4xl md:text-5xl number-aesthetic text-[#C5B99A] mb-3 group-hover:scale-105 transition-transform duration-500">
+                                  <div className="text-3xl md:text-4xl number-aesthetic text-[#C5B99A] mb-2 group-hover:scale-105 transition-transform duration-500">
                                     {highlight}
                                   </div>
                                 )}
@@ -168,13 +168,13 @@ const WorksSection = () => {
                     )}
 
                     {/* Technologies */}
-                    <div className="pt-7">
-                      <h4 className="text-sm text-gray-500 uppercase tracking-widest mb-4">Technologies</h4>
-                      <div className="flex flex-wrap gap-3">
+                    <div className="pt-6">
+                      <h4 className="text-sm text-gray-500 uppercase tracking-widest mb-3">Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
                         {work.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-4 py-2 text-sm border border-gray-700/50 rounded-full text-gray-400 hover:bg-[#C5B99A] hover:text-[#0F0F0F] hover:border-[#C5B99A] transition-all duration-300"
+                            className="px-3 py-1.5 text-sm border border-gray-700/50 rounded-full text-gray-400 hover:bg-[#C5B99A] hover:text-[#0F0F0F] hover:border-[#C5B99A] transition-all duration-300"
                           >
                             {tech}
                           </span>
@@ -185,8 +185,8 @@ const WorksSection = () => {
 
                   {/* RIGHT - Sticky Number */}
                   <div className="col-span-3 md:col-span-2 order-2">
-                    <div className="sticky top-24 text-right">
-                      <div className={`text-[13.5vw] md:text-[10.5vw] lg:text-[9vw] number-aesthetic leading-none transition-all duration-700 ${
+                    <div className="sticky top-20 text-right">
+                      <div className={`text-[12vw] md:text-[9vw] lg:text-[7.5vw] number-aesthetic leading-none transition-all duration-700 ${
                         activeIndex === index ? 'text-[#C5B99A]' : 'text-[#1A1A1A]'
                       }`}>
                         {String(index + 1).padStart(2, '0')}

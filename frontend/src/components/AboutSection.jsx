@@ -49,7 +49,7 @@ const AboutSection = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className="min-h-screen bg-[#F5F1E8] dark:bg-[#0A0A0A] px-4 lg:px-12 py-24 transition-colors duration-500" 
+      className="min-h-screen bg-[#F5F1E8] dark:bg-[#0A0A0A] px-4 lg:px-10 py-20 transition-colors duration-500" 
       data-testid="about-section"
     >
       {/* Google Font */}
@@ -73,12 +73,12 @@ const AboutSection = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* Top Section - Heading LEFT, Skills Grid RIGHT */}
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24 transition-all duration-1000 ease-out ${
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20 transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           {/* Left - Large Heading */}
           <div>
-            <h2 className="text-[7.5vw] md:text-[4.5vw] lg:text-[3.4vw] font-bold leading-[1.1] tracking-tight uppercase text-[#0F0F0F] dark:text-[#F5F1E8]">
+            <h2 className="text-[6.5vw] md:text-[4vw] lg:text-[3vw] font-bold leading-[1.1] tracking-tight uppercase text-[#0F0F0F] dark:text-[#F5F1E8]">
               Developer<br />
               Designer<br />
               Creator /
@@ -87,8 +87,8 @@ const AboutSection = () => {
 
           {/* Right - Skills Grid */}
           <div>
-            <h3 className="text-sm text-gray-500 uppercase tracking-widest mb-6">(Skills)</h3>
-            <div className="grid grid-cols-3 gap-6">
+            <h3 className="text-sm text-gray-500 uppercase tracking-widest mb-5">(Skills)</h3>
+            <div className="grid grid-cols-3 gap-5">
             {/* Languages & Tools */}
             <div>
               <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-4 pb-2 border-b border-[#D2CEC4]">
@@ -144,14 +144,14 @@ const AboutSection = () => {
         </div>
 
         {/* Skills Marquee - Moving train */}
-        <div className={`mb-24 overflow-hidden transition-all duration-1000 delay-300 ${
+        <div className={`mb-20 overflow-hidden transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="flex animate-marquee-slow whitespace-nowrap py-6">
+          <div className="flex animate-marquee-slow whitespace-nowrap py-5">
             {duplicatedSkills.map((skill, index) => (
               <span 
                 key={index} 
-                className="mx-6 text-4xl md:text-5xl lg:text-5xl font-bold text-transparent cursor-default hover:text-[#0F0F0F] transition-colors duration-300"
+                className="mx-5 text-3xl md:text-4xl lg:text-4xl font-bold text-transparent cursor-default hover:text-[#0F0F0F] transition-colors duration-300"
                 style={{ WebkitTextStroke: '1px rgba(0,0,0,0.15)' }}
               >
                 {skill}
@@ -163,7 +163,7 @@ const AboutSection = () => {
         {/* Bottom Section - Image LEFT, About Text RIGHT */}
         <div 
           ref={aboutRef}
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start transition-all duration-1000 ease-out ${
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-start transition-all duration-1000 ease-out ${
             aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -188,18 +188,18 @@ const AboutSection = () => {
           </div>
 
           {/* Right - About Text */}
-          <div className={`space-y-6 transition-all duration-1000 delay-400 ${
+          <div className={`space-y-5 transition-all duration-1000 delay-400 ${
             aboutVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
           }`}>
             <div className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest">
               (About Me)
             </div>
             
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0F0F0F] dark:text-[#F5F1E8] leading-tight">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#0F0F0F] dark:text-[#F5F1E8] leading-tight">
               I'm a software engineer driven by a passion for turning complex problems into clean, efficient solutions.
             </h3>
 
-            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <div className="space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
               <p>
                 I'm Sachet Ranjan Bisi, a Computer Engineering graduate from NYU with hands-on experience in software development and AI/ML deployment. I've built scalable APIs, optimized backend systems, and deployed intelligent applications across AWS, GCP, and Azure.
               </p>
@@ -212,7 +212,7 @@ const AboutSection = () => {
             </div>
 
             {/* Location & Availability */}
-            <div className="pt-6 border-t border-[#D2CEC4] dark:border-gray-700 flex gap-9">
+            <div className="pt-5 border-t border-[#D2CEC4] dark:border-gray-700 flex gap-7">
               <div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Location</div>
                 <div className="text-[#0F0F0F] dark:text-[#F5F1E8] font-medium">{personalInfo.location}</div>

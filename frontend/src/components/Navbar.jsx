@@ -73,8 +73,8 @@ const Navbar = () => {
         } ${isScrolled ? 'bg-[#F5F1E8]/90 dark:bg-[#0A0A0A]/90 backdrop-blur-md' : 'bg-transparent'}`}
         data-testid="navbar"
       >
-        <div className="max-w-7xl mx-auto px-4 lg:px-9">
-          <div className="flex items-center justify-between h-16">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-between h-14">
             <div 
               className="text-sm font-medium cursor-pointer hover:opacity-70 transition-opacity duration-300 flex items-center text-[#0F0F0F] dark:text-[#F5F1E8]"
               onClick={() => scrollToSection('#hero')}
@@ -114,7 +114,7 @@ const Navbar = () => {
             <X className="w-5 h-5 text-[#0A0A0A]" />
           </button>
 
-          <div className="h-full flex flex-col justify-between px-9 lg:px-[72px] py-[72px]">
+          <div className="h-full flex flex-col justify-between px-8 lg:px-[60px] py-[60px]">
             {/* Menu Items */}
             <nav className="flex-1 flex flex-col justify-center space-y-2">
               {[
@@ -127,7 +127,7 @@ const Navbar = () => {
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left text-4xl md:text-5xl lg:text-5xl font-bold text-[#F5F1E8] hover:text-[#C5B99A] transition-all duration-300 hover:translate-x-4"
+                  className="text-left text-3xl md:text-4xl lg:text-4xl font-bold text-[#F5F1E8] hover:text-[#C5B99A] transition-all duration-300 hover:translate-x-4"
                   style={{ 
                     animation: `menuItemSlide 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.08}s forwards`, 
                     opacity: 0 
