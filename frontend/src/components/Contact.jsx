@@ -24,21 +24,21 @@ const Contact = () => {
   }, []);
 
   return (
-    <section id="contact" className="bg-[#0F0F0F] text-[#F5F1E8] px-6 lg:px-12 py-24" ref={sectionRef} data-testid="contact-section">
+    <section id="contact" className="bg-[#0F0F0F] text-[#F5F1E8] px-4 lg:px-9 py-[18px]" ref={sectionRef} data-testid="contact-section">
       <div className="max-w-7xl mx-auto">
         <div 
           className={`transform transition-all duration-800 ease-out ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <h2 className="text-5xl md:text-6xl font-light mb-8">
+          <h2 className="text-4xl md:text-5xl font-light mb-6">
             Let's Connect
           </h2>
-          <p className="text-lg text-gray-400 mb-12 leading-relaxed">
+          <p className="text-base text-gray-400 mb-8 leading-relaxed">
             Please reach out via email, number or LinkedIn.
           </p>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div 
               className={`flex items-start gap-4 group hover:translate-x-3 transition-all duration-400 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
@@ -84,13 +84,13 @@ const Contact = () => {
           </div>
 
           <div 
-            className={`mt-12 pt-12 border-t border-gray-800 transition-all duration-800 ease-out ${
+            className={`mt-8 pt-8 border-t border-gray-800 transition-all duration-800 ease-out ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
             style={{ transitionDelay: '500ms' }}
           >
-            <p className="text-sm text-gray-500 mb-4">Connect with me</p>
-            <div className="flex gap-4">
+            <p className="text-sm text-gray-500 mb-3">Connect with me</p>
+            <div className="flex gap-3">
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
