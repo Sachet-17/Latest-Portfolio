@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { files, socialLinks } from '../config/assets';
 
+const ROLES = ['AI Engineer', 'ML Engineer', 'Software Developer', 'Full Stack Enthusiast'];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,8 +11,6 @@ const Navbar = () => {
   const [displayText, setDisplayText] = useState('');
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  const roles = ['AI Engineer', 'ML Engineer', 'Software Developer', 'Full Stack Enthusiast'];
 
   useEffect(() => {
     // Delay navbar appearance until after opening animation
@@ -31,7 +31,7 @@ const Navbar = () => {
 
   // Typing effect
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = ROLES[roleIndex];
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
@@ -48,13 +48,13 @@ const Navbar = () => {
           setDisplayText(displayText.slice(0, -1));
         } else {
           setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
+          setRoleIndex((prev) => (prev + 1) % ROLES.length);
         }
       }
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex, roles]);
+  }, [displayText, isDeleting, roleIndex]);
 
   const scrollToSection = (id) => {
     const element = document.querySelector(id);
